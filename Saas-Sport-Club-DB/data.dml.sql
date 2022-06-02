@@ -28,7 +28,7 @@ INSERT INTO players (
     role_id
 )
  VALUES
-('Francis', 'B', 551001756, 1326, '12345678',  'BouFrancis@duck.com',
+('Francis', 'B', 551001756, 1326, '12345678',  'F@duck.com',
  (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_SUPER_ADMIN')),
 
 ('Selena', 'Gomez', 440990645, 2900, '$2a$10$jtjVcOpwmLp4Zqn2vHYLUeTSqnXxrvU3FIzuFI2nt62U1FAAbhq3S',
