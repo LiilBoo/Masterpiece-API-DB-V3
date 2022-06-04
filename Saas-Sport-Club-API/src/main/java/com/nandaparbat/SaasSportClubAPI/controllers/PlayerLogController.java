@@ -24,7 +24,6 @@ public class PlayerLogController {
     @PostMapping("/sign-in")
     @ResponseStatus(HttpStatus.OK)
     public Jwt signIn(@RequestBody PlayerSignIn inputs){
-        System.out.println("We were here; CONTROLLER ENDPOINT REACHED");
         return playerService.signIn(inputs);
     };
 };

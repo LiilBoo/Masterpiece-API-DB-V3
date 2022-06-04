@@ -22,11 +22,6 @@ public interface TournamentRepository extends JpaRepository<Tournament, Long> {
 
     //* ---- GET REQUESTS ------
 
-//! Broke on refactoring ?
-//    @Query("SELECT new com.nandaparbat.SaasSportClubAPI.DTOs.TournamentView(t.id, t.name, t.format.formatName, t" +
-//            ".pairingStyle.pairingStyle, t.firstPrice, t.registerFeeSenior, t.registerFeeJunior) " +
-//            "FROM Tournament t WHERE t.event = TRUE")
-//    List<TournamentView> findAllByEventIsTrue();
 
     //* WORKS => DTO
     @Query("SELECT new com.nandaparbat.SaasSportClubAPI.DTOs.TournamentViewCard(t.id, t.name, t.format.name, t" +
@@ -55,7 +50,6 @@ public interface TournamentRepository extends JpaRepository<Tournament, Long> {
     List<TournamentViewCard> findAllByContactContains(String contact);
 
     //* WORKS => DTO
-    // TODO :  Implement Case insensitivity
     @Query("SELECT new com.nandaparbat.SaasSportClubAPI.DTOs.TournamentViewCard(t.id, t.name, t.format.name,t" +
             ".pairingStyle.name, t.firstPrice, t.registerFeeSenior, t.registerFeeJunior, t.description) "  +
             "FROM Tournament t WHERE LOWER(t.name) LIKE LOWER(CONCAT('%',?1,'%')) ")
@@ -87,6 +81,7 @@ public interface TournamentRepository extends JpaRepository<Tournament, Long> {
 
 
     //! ------------- CHECK LINE ---------------
+
 
 
     //* --- PUT REQUEST

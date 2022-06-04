@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class TournamentServiceImpl implements TournamentService {
 
     private final TournamentRepository tournamentRepository;
@@ -24,6 +24,13 @@ public class TournamentServiceImpl implements TournamentService {
     private final FormatRepository formatRepository;
 
     private final PairingStyleRepository pairingStyleRepository;
+
+    public TournamentServiceImpl(TournamentRepository tournamentRepository, FormatRepository formatRepository, PairingStyleRepository pairingStyleRepository) {
+        this.tournamentRepository = tournamentRepository;
+        this.formatRepository = formatRepository;
+        this.pairingStyleRepository = pairingStyleRepository;
+    }
+
 
     //* ---- GET REQUESTS
 
@@ -70,7 +77,6 @@ public class TournamentServiceImpl implements TournamentService {
         //* Starts at 0
         x = x * 10;
 
-        //*Starts at 0
         Long y = x + 10;
 
         return tournamentRepository.findAllByIdIsBetween(x,y);
@@ -130,7 +136,12 @@ public class TournamentServiceImpl implements TournamentService {
         if((inputs.getFormatId() != null) ){
             //TODO : Verify it's an exisiting Format in Database
 
-            Format format = formatRepository.findById(inputs.getFormatId()).get();
+//            Format format = formatRepository.findById(inputs.getFormatId()).get();
+            //* Extends JpaRepository => checked
+            //! Autocomplete fails
+            //! Cannot resolve method
+            Format format = formatRepository.getReferenceById(inputs.getFormatId());
+
             tour.setFormat(format);
         };
 

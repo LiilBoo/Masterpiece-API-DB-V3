@@ -26,10 +26,11 @@ public class TournamentController {
         return tournamentService.findAllToursCards();
     };
 
+
     //* WORKS => DTO
     @GetMapping("/with-id")
     @ResponseStatus(HttpStatus.OK)
-    public TournamentView findWithID(@RequestParam("id") Long id){
+    public TournamentView tourDetails(@RequestParam("id") Long id){
         return  tournamentService.findWithId(id);
     };
 
@@ -71,6 +72,8 @@ public List<TournamentCardView> paginatePer10(@RequestParam("page") Long x) {
 };
     // TODO : Per month ? => Time ? implement : Don't implent
 
+    @GetMapping("my-tours")
+
 
     //* ---------- DELETE REQUESTS ----------------------------------
 
@@ -91,6 +94,8 @@ public List<TournamentCardView> paginatePer10(@RequestParam("page") Long x) {
 
     //! ---- CHECK LINE : CODE ABOVE WORKS ------------------------------------------------------ //
 
+    //* -------- PUT REQUESTS
+    //! Irrelevant ...
     @PutMapping("/put")
     @ResponseStatus(HttpStatus.OK)
     public void overrideTournament(@RequestBody TournamentPatch inputs,
@@ -98,7 +103,6 @@ public List<TournamentCardView> paginatePer10(@RequestParam("page") Long x) {
         tournamentService.overrideTournament(inputs, id);
     };
 
-    //* -------- PUT REQUESTS
 
     //* ---------- POST REQUEST
 

@@ -136,16 +136,6 @@ public class Tournament {
         return pairingStyle;
     };
 
-//    //TODO : retrive the string, not the full object
-//    // ? possible ?
-//    public String getPairingStyleName() {
-//
-//        pairingStyle.setName("Suisse");
-//
-//        String magic = pairingStyle.getName();
-//        return magic;
-//    };
-
     public void setPairingStyle(PairingStyle pairingStyle) {
         this.pairingStyle = pairingStyle;
     };
