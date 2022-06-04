@@ -17,13 +17,13 @@ public class Tournament {
     @Column(name = "tournament_name")
     private String name;
 
-    @Column(name = "is_event")
+    @Column(name = "is_event", nullable = true)
     private boolean event;
 
     @Column(name = "date_of_start")
     private LocalDate dateOfStart;
 
-    @Column(name = "date_of_end")
+    @Column(name = "date_of_end", nullable = true)
     private LocalDate dateOfEnd;
 
     @Column(name = "number_of_rounds")
@@ -46,19 +46,19 @@ public class Tournament {
     @Column(name = "capacity")
     private Integer capacity;
 
-    @Column(name = "first_price")
+    @Column(name = "first_price", nullable = true)
     private Integer firstPrice;
 
-    @Column(name = "second_price")
+    @Column(name = "second_price", nullable = true)
     private Integer secondPrice;
 
-    @Column(name = "third_price")
+    @Column(name = "third_price", nullable = true)
     private Integer thirdPrice;
 
-    @Column(name = "register_fee_senior")
+    @Column(name = "register_fee_senior", nullable = true)
     private int registerFeeSenior;
 
-    @Column(name = "register_fee_junior")
+    @Column(name = "register_fee_junior", nullable = true)
     private int registerFeeJunior;
 
     @Column(name = "description")

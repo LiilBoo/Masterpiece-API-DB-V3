@@ -12,7 +12,6 @@ import javax.persistence.*;
 public class Format {
 
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

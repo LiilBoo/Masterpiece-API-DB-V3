@@ -1,6 +1,6 @@
 package com.nandaparbat.SaasSportClubAPI.repositories;
 
-import com.nandaparbat.SaasSportClubAPI.DTOs.FormatDTO;
+import com.nandaparbat.SaasSportClubAPI.DTOs.formats.FormatIDTO;
 import com.nandaparbat.SaasSportClubAPI.entities.Format;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -16,12 +16,12 @@ public interface FormatRepository extends JpaRepository<Format, Long> {
 
 
 
-    List<FormatDTO> findAllByNameEquals(String formatName);
+    List<FormatIDTO> findAllByNameEquals(String formatName);
 
-    List<FormatDTO> findAllByIdEquals(Long id);
+    List<FormatIDTO> findAllByIdEquals(Long id);
 
-//    boolean existsByName(String existingName);
-//
-//    boolean existsById(java.lang.Long id);
+    Format findByName(String name);
+
+    boolean existsByName(String name);
 
 };

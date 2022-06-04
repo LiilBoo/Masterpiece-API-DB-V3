@@ -58,8 +58,8 @@ CREATE TABLE tournaments (
     number_of_rounds SMALLINT NOT NULL,
     format INTEGER NOT NULL,
     pairing_style INTEGER NOT NULL,
-    organisator VARCHAR(255) NOT NULL,
-    contact VARCHAR(255) NOT NULL,
+    organisator VARCHAR(100) NOT NULL,
+    contact VARCHAR(100) NOT NULL,
     capacity INTEGER ,
     first_price INTEGER ,
     second_price INTEGER ,
@@ -82,8 +82,7 @@ CREATE INDEX idx_tour_name ON tournaments(tournament_name);
 
 CREATE TABLE teams (
     id SERIAL PRIMARY KEY,
-    team_name VARCHAR(50) UNIQUE NOT NULL,
-    elo_maximum_allowed INTEGER
+    team_name VARCHAR(50) UNIQUE NOT NULL
 );
 -- table created
 

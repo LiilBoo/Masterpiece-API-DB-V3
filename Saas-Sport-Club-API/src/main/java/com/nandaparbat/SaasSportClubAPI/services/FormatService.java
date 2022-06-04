@@ -1,17 +1,31 @@
 package com.nandaparbat.SaasSportClubAPI.services;
 
-import com.nandaparbat.SaasSportClubAPI.DTOs.FormatDTO;
-import com.nandaparbat.SaasSportClubAPI.entities.Format;
+import com.nandaparbat.SaasSportClubAPI.DTOs.formats.FormatDTO;
+import com.nandaparbat.SaasSportClubAPI.DTOs.formats.FormatIDTO;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface FormatService {
 
-    List<FormatDTO> findAllByNameEquals(String formatName);
+    //* ---- CREATE REQUEST
+    void createFormat(FormatDTO inputs);
 
-    List<FormatDTO> findFormatById(Long id);
+    //* --- READ REQUESTS
 
-    List<FormatDTO> findAllProjectedBy();
+    //*Perfect
+    List<FormatIDTO> findAllProjectedBy();
 
+    //*Perfect
+    FormatDTO findFormatById(Long id);
+
+    //*Works
+    List<FormatIDTO> findAllByNameEquals(String formatName);
+
+    //* --- UPDATE REQUEST
+    @Transactional
+    void updateFormat(FormatDTO inputs, Long id);
+    //* --- DELETE REQUEST
+    void deleteFormat(Long id);
 
 };

@@ -26,6 +26,15 @@ public class PlayerServiceImpl implements PlayerService {
 
     private final JwtProvider provider;
 
+
+
+
+
+    //TODO : ADD Business logic : fide elo, fide number, firstname, lastname,
+
+    //! AUTH
+    //! DONT MODIFY
+    //!-------------------
     @Transactional
     @Override
     public void create(PlayerCreate inputs){
@@ -66,4 +75,8 @@ public class PlayerServiceImpl implements PlayerService {
 
         return provider.create(String.valueOf(player.getId()), roles);
     };
+
+    //!---------- AUTH ------------
+    //! DONT CHANGE
+
 };

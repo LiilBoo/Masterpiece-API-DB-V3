@@ -2,22 +2,23 @@ package com.nandaparbat.SaasSportClubAPI.DTOs;
 
 import com.nandaparbat.SaasSportClubAPI.entities.Format;
 import com.nandaparbat.SaasSportClubAPI.entities.PairingStyle;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class TournamentCreate {
-
-
 
 
     @NotBlank
     private String name;
-
-    private Boolean event;
 
     @NotBlank
     private LocalDate dateOfStart;
@@ -28,11 +29,12 @@ public class TournamentCreate {
     @Min(1)
     private int numberOfRounds;
 
-
     private Long formatId;
 
     private Long pairingId;
 
+    @NotBlank
+    @Size(min=5, max=100)
     private String organisator;
 
     private String contact; //personalUrl or email
@@ -54,68 +56,6 @@ public class TournamentCreate {
     @Size(min=1, max=255)
     private String description;
 
-    public String getTournamentName() {
-        return name;
-    };
 
-    public Boolean isEvent() {
-        return event;
-    };
-
-    public LocalDate getDateOfStart() {
-        return dateOfStart;
-    };
-
-    public LocalDate getDateOfEnd() {
-        return dateOfEnd;
-    };
-
-    public int getNumberOfRounds() {
-        return numberOfRounds;
-    };
-
-    public Long getFormatId() {
-        return formatId;
-    };
-
-    public Long getPairingId() {
-        return pairingId;
-    };
-
-    public String getOrganisator() {
-        return organisator;
-    };
-
-    public String getContact() {
-        return contact;
-    };
-
-    public Integer getCapacity() {
-        return capacity;
-    };
-
-    public Integer getFirstPrice() {
-        return firstPrice;
-    };
-
-    public Integer getSecondPrice() {
-        return secondPrice;
-    };
-
-    public Integer getThirdPrice() {
-        return thirdPrice;
-    };
-
-    public Integer getRegisterFeeSenior() {
-        return registerFeeSenior;
-    };
-
-    public Integer getRegisterFeeJunior() {
-        return registerFeeJunior;
-    };
-
-    public String getDescription() {
-        return description;
-    };
 
 };

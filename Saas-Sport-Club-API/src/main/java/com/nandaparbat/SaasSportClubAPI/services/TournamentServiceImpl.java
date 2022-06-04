@@ -8,6 +8,7 @@ import com.nandaparbat.SaasSportClubAPI.repositories.FormatRepository;
 import com.nandaparbat.SaasSportClubAPI.repositories.PairingStyleRepository;
 import com.nandaparbat.SaasSportClubAPI.repositories.TournamentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,7 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class TournamentServiceImpl implements TournamentService {
 
     private final TournamentRepository tournamentRepository;
@@ -24,12 +25,6 @@ public class TournamentServiceImpl implements TournamentService {
     private final FormatRepository formatRepository;
 
     private final PairingStyleRepository pairingStyleRepository;
-
-    public TournamentServiceImpl(TournamentRepository tournamentRepository, FormatRepository formatRepository, PairingStyleRepository pairingStyleRepository) {
-        this.tournamentRepository = tournamentRepository;
-        this.formatRepository = formatRepository;
-        this.pairingStyleRepository = pairingStyleRepository;
-    }
 
 
     //* ---- GET REQUESTS
@@ -95,7 +90,7 @@ public class TournamentServiceImpl implements TournamentService {
 
     //* -------- PATCH REQUEST --------
 
-    //*Helper Method
+    //*Helper Method to update
     public Tournament tournamentUpdate(TournamentPatch inputs, Long id){
 
         Tournament tour = tournamentRepository.findById(id).get();
@@ -136,11 +131,14 @@ public class TournamentServiceImpl implements TournamentService {
         if((inputs.getFormatId() != null) ){
             //TODO : Verify it's an exisiting Format in Database
 
-//            Format format = formatRepository.findById(inputs.getFormatId()).get();
-            //* Extends JpaRepository => checked
-            //! Autocomplete fails
-            //! Cannot resolve method
-            Format format = formatRepository.getReferenceById(inputs.getFormatId());
+            Format format = formatRepository.findById(inputs.getFormatId()).get();
+
+//            Format format2 = formatRepository.getById(inputs.getFormatId());
+
+//            //* Extends JpaRepository => checked
+//            //! Autocomplete fails
+//            //! Cannot resolve method
+//            Format format = formatRepository.getReferenceById(inputs.getFormatId());
 
             tour.setFormat(format);
         };
@@ -206,7 +204,6 @@ public class TournamentServiceImpl implements TournamentService {
 
     //! javax Transactional;
     // ! not spring annotation transactional
-    //TODO : All use cases individually and gradually
     @Override
     @Transactional
     public void update1Tournament(TournamentPatch inputs, Long id) {
@@ -217,17 +214,16 @@ public class TournamentServiceImpl implements TournamentService {
 
     };
 
+    //* --- POST REQUEST : CREATE
 
-    //! ---------- CHECK LINE : CODE ABOVE WORKS --------------
-
-    //! Supposedly works
-//    @Transactional
-    public Tournament tournamentSetting(TournamentCreate inputs){
+    //* WORKS
+    //? Did work : test more
+    @Transactional
+    public Tournament tournamentSetting(@Nullable TournamentCreate inputs){
         Tournament tournament = new Tournament();
         //-- tournament : tournament name
-        tournament.setName(inputs.getTournamentName());
-        //-- tournament : is_event
-        tournament.setEvent(inputs.isEvent());
+        tournament.setName(inputs.getName());
+
         //-- tournament : date of start
         tournament.setDateOfStart(inputs.getDateOfStart());
         //-- tournament : date of end
@@ -238,8 +234,7 @@ public class TournamentServiceImpl implements TournamentService {
         Format format = formatRepository.findById(inputs.getFormatId()).get();
         tournament.setFormat(format);
         //-- tournamenet : pairing Style
-        //? The given Id must not be null ???
-        //! causes an error ?
+
         PairingStyle pairing = pairingStyleRepository.findById(inputs.getPairingId()).get();
 //        Long number = new Long(1);
 //        PairingStyle pairing = new PairingStyle(number, "Suisse");
@@ -265,14 +260,19 @@ public class TournamentServiceImpl implements TournamentService {
 
         return tournament;
     };
-    //! NON-TESTED
+
+    //? More tests to do
     @Override
+    @Transactional
     public void tournamentCreate(TournamentCreate inputs) {
         Tournament tournament = this.tournamentSetting(inputs);
         tournamentRepository.save(tournament);
     };
 
 
+    //! ---------- CHECK LINE : CODE ABOVE WORKS --------------
+
+    //! USELESS DOES NOT WORK
     @Override
     @Transactional
     public void overrideTournament(TournamentPatch inputs, Long id) {

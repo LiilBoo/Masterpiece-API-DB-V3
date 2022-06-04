@@ -20,8 +20,6 @@ public class Team {
 
     private int member_number;
 
-    private int eloMaximumAllowed;
-
     @Transient
     private int totalTeamElo;
 
