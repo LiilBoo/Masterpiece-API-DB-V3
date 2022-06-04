@@ -1,7 +1,11 @@
 package com.nandaparbat.SaasSportClubAPI.DTOs;
 
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//! Spring relies on the constructor to create the object at runtime and do magic
+
+@Data
 @NoArgsConstructor
 public class PlayerCreate {
 
@@ -9,22 +13,13 @@ public class PlayerCreate {
 
     private String password;
 
+    private String firstName;
 
-    public String getUsername(){
-        return username;
-    };
+    private String lastName;
 
-    public void setUsername(String username){
-        this.username = username;
-    };
+    private int fideNumber;
 
-    public String getPassword(){
-        return password;
-    };
-
-    public void setPassword(String password){
-        this.password = password;
-    };
+    private int elo;
 
     @Override
     public String toString() {

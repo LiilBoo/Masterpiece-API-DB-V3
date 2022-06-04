@@ -1,6 +1,8 @@
 package com.nandaparbat.SaasSportClubAPI.services;
 
+import com.nandaparbat.SaasSportClubAPI.DTOs.MyToursDTO;
 import com.nandaparbat.SaasSportClubAPI.DTOs.PlayerCreate;
+import com.nandaparbat.SaasSportClubAPI.DTOs.PlayerDTO;
 import com.nandaparbat.SaasSportClubAPI.DTOs.PlayerSignIn;
 import com.nandaparbat.SaasSportClubAPI.entities.Player;
 import com.nandaparbat.SaasSportClubAPI.entities.Role;
@@ -28,6 +30,42 @@ public class PlayerServiceImpl implements PlayerService {
 
 
 
+    @Override
+    public List<MyToursDTO> myToursByMyId(Long id) {
+        return null;
+    };
+
+    @Override
+    public PlayerDTO myInfosByMyId(Long id) {
+        return null;
+    };
+
+    @Override
+    public void updateMyInfos(Long id) {
+
+    };
+
+    @Override
+    public void updateMyTours(Long id) {
+
+    };
+
+    @Override
+    public void unregisterFromTournament(Long tourID, Long myPersonalId) {
+
+    };
+
+    @Override
+    public void deleteMyProfile(Long id) {
+
+    };
+
+    @Override
+    public void deleteMeFromTeam(Long teamId, Long myId) {
+
+    };
+
+
 
 
     //TODO : ADD Business logic : fide elo, fide number, firstname, lastname,
@@ -43,11 +81,18 @@ public class PlayerServiceImpl implements PlayerService {
 
         String encoded = encoder.encode(inputs.getPassword());
         player.setPassword(encoded);
+
+        //*-------------------
+        player.setFirstName(inputs.getFirstName());
+        player.setLastName(inputs.getLastName());
+        player.setElo(inputs.getElo());
+        player.setFideNumber(inputs.getFideNumber());
+        //*-------------------
+
+
+
         playerRepository.save(player);
     };
-
-
-
     @Override
     public Jwt signIn(PlayerSignIn inputs) {
 
@@ -74,8 +119,7 @@ public class PlayerServiceImpl implements PlayerService {
         };
 
         return provider.create(String.valueOf(player.getId()), roles);
-    };
-
+    }
     //!---------- AUTH ------------
     //! DONT CHANGE
 

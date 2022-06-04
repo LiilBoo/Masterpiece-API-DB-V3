@@ -11,7 +11,7 @@ import com.nandaparbat.SaasSportClubAPI.security.Jwt;
 @RestController
 @RequestMapping("/api/players")
 @RequiredArgsConstructor
-public class PlayerLogController {
+public class PlayerController {
 
     private final PlayerService playerService;
 
