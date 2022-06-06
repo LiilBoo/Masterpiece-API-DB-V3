@@ -1,10 +1,9 @@
 package com.nandaparbat.SaasSportClubAPI.services;
 
-import com.nandaparbat.SaasSportClubAPI.DTOs.MyToursDTO;
-import com.nandaparbat.SaasSportClubAPI.DTOs.PlayerCreate;
-import com.nandaparbat.SaasSportClubAPI.DTOs.PlayerDTO;
-import com.nandaparbat.SaasSportClubAPI.DTOs.PlayerSignIn;
+import com.nandaparbat.SaasSportClubAPI.DTOs.*;
 import com.nandaparbat.SaasSportClubAPI.security.Jwt;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -34,6 +33,9 @@ public interface PlayerService {
 
 //    void updateMyTeams();
 
+    //* --- ADMIN REQUESTS Relative to users
+
+//    public void playerRoleSetting(@RequestParam("id") Long playerId, @RequestBody RoleSettingDTO roleBody);
 
     //* --- DELETE REQUEST
 

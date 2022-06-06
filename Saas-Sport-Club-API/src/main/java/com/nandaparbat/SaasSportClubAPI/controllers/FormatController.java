@@ -39,6 +39,7 @@ public class FormatController {
         return formatService.findFormatById(id);
     };
 
+    //TODO : case sensitivity
     @GetMapping("/formatname")
     @ResponseStatus(HttpStatus.OK)
     public List<FormatIDTO> searchByName(@RequestParam("formatname") String formatName) {

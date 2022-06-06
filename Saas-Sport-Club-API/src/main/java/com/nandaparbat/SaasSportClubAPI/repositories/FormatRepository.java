@@ -15,7 +15,7 @@ public interface FormatRepository extends JpaRepository<Format, Long> {
     <Type> List<Type> findAllProjectedBy(Class<Type> type);
 
 
-
+    //TODO : Case sensitivity
     List<FormatIDTO> findAllByNameEquals(String formatName);
 
     List<FormatIDTO> findAllByIdEquals(Long id);

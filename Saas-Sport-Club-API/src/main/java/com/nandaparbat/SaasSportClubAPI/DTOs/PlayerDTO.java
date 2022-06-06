@@ -20,9 +20,4 @@ public class PlayerDTO {
 
     private int elo;
 
-    //TODO : Collection of teams
-    private Team uniqueTeam;
-
-    //TODO : Collection of Roles
-
 };

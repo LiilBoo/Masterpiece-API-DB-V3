@@ -14,4 +14,6 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
 
     //* WORKS => DTO
     <Type> List<Type> findAllProjectedBy(Class<Type> type);
+
+
 };

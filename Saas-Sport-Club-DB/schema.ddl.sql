@@ -12,6 +12,9 @@ DROP TABLE IF EXISTS formats CASCADE ;
 DROP TABLE IF EXISTS pairing_styles CASCADE ;
 DROP TABLE IF EXISTS tournaments CASCADE ;
 DROP TABLE IF EXISTS teams CASCADE ;
+DROP TABLE IF EXISTS teams_players CASCADE ;
+DROP TABLE IF EXISTS tournaments_players CASCADE ;
+DROP TABLE IF EXISTS players_teams CASCADE ;
 
 CREATE TABLE roles (
     id SERIAL PRIMARY KEY UNIQUE,
@@ -23,7 +26,7 @@ CREATE TABLE players (
     id SERIAL PRIMARY KEY UNIQUE,
     first_name VARCHAR(100),
     last_name VARCHAR(255),
-    fide_number INTEGER NOT NULL,
+    fide_number INTEGER UNIQUE NOT NULL,
     elo INTEGER DEFAULT 1199,
     password VARCHAR(60) NOT NULL,
     username VARCHAR(255) UNIQUE NOT NULL,
@@ -59,7 +62,7 @@ CREATE TABLE tournaments (
     format INTEGER NOT NULL,
     pairing_style INTEGER NOT NULL,
     organisator VARCHAR(100) NOT NULL,
-    contact VARCHAR(100) NOT NULL,
+    contact VARCHAR(255) NOT NULL,
     capacity INTEGER ,
     first_price INTEGER ,
     second_price INTEGER ,
@@ -85,6 +88,43 @@ CREATE TABLE teams (
     team_name VARCHAR(50) UNIQUE NOT NULL
 );
 -- table created
+
+
+CREATE TABLE teams_players (
+team_id INTEGER,
+player_id INTEGER,
+PRIMARY KEY (team_id, player_id),
+CONSTRAINT fk_team_id
+   FOREIGN KEY(team_id)
+       REFERENCES teams(id),
+CONSTRAINT fk_player_id
+   FOREIGN KEY (player_id)
+       REFERENCES players(id)
+);
+
+CREATE TABLE tournaments_players (
+    tournament_id INTEGER,
+    player_id INTEGER,
+    PRIMARY KEY (tournament_id, player_id),
+    CONSTRAINT fk_tournament_id
+        FOREIGN KEY(tournament_id)
+            REFERENCES tournaments(id),
+    CONSTRAINT fk_player_id
+        FOREIGN KEY (player_id)
+            REFERENCES players(id)
+);
+
+CREATE TABLE players_teams (
+    player_id INTEGER,
+    team_id INTEGER,
+    PRIMARY KEY (player_id, team_id),
+    CONSTRAINT fk_player_id
+        FOREIGN KEY(player_id)
+            REFERENCES players(id),
+    CONSTRAINT fk_team_id
+        FOREIGN KEY(team_id)
+                REFERENCES teams(id)
+);
 
 
 

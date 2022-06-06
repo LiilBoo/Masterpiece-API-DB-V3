@@ -34,6 +34,7 @@ public class FormatServiceImpl implements FormatService{
 
     //* READ ------- GET REQUESTS
 
+    //TODO : Case sensitivity
     @Override
     public List<FormatIDTO> findAllByNameEquals(String formatName) {
 

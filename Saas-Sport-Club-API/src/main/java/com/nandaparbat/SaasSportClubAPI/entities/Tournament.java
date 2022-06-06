@@ -4,6 +4,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -63,6 +64,20 @@ public class Tournament {
 
     @Column(name = "description")
     private String description;
+
+    @ManyToMany
+    @JoinTable(name = "tournaments_players",
+            joinColumns = @JoinColumn(name = "tournament_id"),
+            inverseJoinColumns = @JoinColumn(name = "player_id"))
+    private List<Player> participants;
+
+    public List<Player> getParticipants() {
+        return participants;
+    };
+
+    public void setParticipants(List<Player> participants) {
+        this.participants = participants;
+    };
 
     public int getRegisterFeeJunior() {
         return registerFeeJunior;

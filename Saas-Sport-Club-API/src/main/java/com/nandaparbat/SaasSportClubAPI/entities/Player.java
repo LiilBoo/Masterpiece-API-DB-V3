@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -37,17 +38,35 @@ public class Player {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    @ManyToMany
+    @JoinTable(name = "players_teams",
+            joinColumns = @JoinColumn(name = "player_id"),
+            inverseJoinColumns = @JoinColumn(name = "team_id"))
+    private List<Team> teams;
+
+    public void setElo(Integer elo) {
+        this.elo = elo;
+    };
+
+    public List<Team> getTeams() {
+        return teams;
+    };
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
+    };
+
     public Long getId() {
         return id;
-    }
+    };
 
     public String getFirstName() {
         return firstName;
-    }
+    };
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
+    };
 
     public String getLastName() {
         return lastName;

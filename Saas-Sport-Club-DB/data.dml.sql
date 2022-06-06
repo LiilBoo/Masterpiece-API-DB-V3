@@ -12,9 +12,7 @@
 ('ROLE_SUPER_ADMIN'),
 ('ROLE_ADMIN'),
 ('ROLE_ORGANISATOR'),
-('ROLE_TRAINER'),
-('ROLE_CAPTAIN'),
-('ROLE_PLAYER')
+('ROLE_CAPTAIN')
 ;
 -- semi-colon is here : end of roles insertion
 
@@ -39,15 +37,19 @@ INSERT INTO players (
  (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_PRESIDENT')),
 
 ('David', 'D', 228778423, 1399, '12345678', 'D@duck.com',
- (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_MEMBER')),
+ (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_ORGANISATOR')),
 
 ('Oscar', 'T', 117667312, 2900, '12345678', 'T@duck.com',
- (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_TRAINER')),
+ (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_ORGANISATOR')),
 
 ('Phillip', 'W', 008556201, 1700, '12345678','W@duck.com',
- (SELECT r.id FROM roles r  WHERE r.role_name = 'ROLE_CAPTAIN'))
+ (SELECT r.id FROM roles r  WHERE r.role_name = 'ROLE_ORGANISATOR')),
+
+('Harry', 'W', 1196673012, 2153, '12345678','H@duck.com',
+ (SELECT r.id FROM roles r  WHERE r.role_name = 'ROLE_ORGANISATOR'))
 ;
 --   End of insertion for initial players
+-- validated insert
 
 INSERT INTO formats (
     format_name
@@ -63,7 +65,10 @@ VALUES
 
 INSERT INTO pairing_styles ( pairing_style )
 VALUES
-('Suisse')
+('Suisse'),
+       ('Random'),
+        ('Closed'),
+            ('Determined')
 ;
 -- end of insert
 
@@ -335,11 +340,74 @@ TRUE,
 20,
 '1ers Prix garantis si 50 inscrits payants'
 )
-
 ;
-
-
 -- validated insert
 -- end of tournament inserts
 
+INSERT INTO teams (
+        team_name
+)
+VALUES
+('Avengers'),('Suicid Squad'),('Dream Team'),('Army of the night'),('Mugiwara'),
+('Baroque Works'),('Navy'),('CP9'),('Doflamingo Family'),('Beast Pirates'),
+('MOM Pirates'),('Pirates of The Heart')
+;
+-- validated insert
+-- end of teams
+
+INSERT INTO players_teams VALUES
+
+((SELECT p.id FROM players p WHERE p.first_name = 'Oscar'),
+ (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
+
+((SELECT p.id FROM players p WHERE p.first_name = 'Phillip'),
+ (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
+
+((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
+ (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
+
+((SELECT p.id FROM players p WHERE p.first_name = 'Harry'),
+ (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
+
+((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
+ (SELECT t.id FROM teams t WHERE t.team_name = 'Suicid Squad')),
+
+((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
+ (SELECT t.id FROM teams t WHERE t.team_name = 'Dream Team')),
+
+((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
+ (SELECT t.id FROM teams t WHERE t.team_name = 'Mugiwara')),
+
+((SELECT p.id FROM players p WHERE p.first_name = 'Oscar'),
+ (SELECT t.id FROM teams t WHERE t.team_name = 'Mugiwara'))
+;
+-- end of players_teams
+-- validated insert
+
+INSERT INTO teams_players VALUES
+
+((SELECT t.id FROM teams t WHERE t.team_name = 'Avengers'),
+(SELECT p.id FROM players p WHERE p.first_name = 'Oscar')),
+
+((SELECT t.id FROM teams t WHERE t.team_name = 'Avengers'),
+(SELECT p.id FROM players p WHERE p.first_name = 'Phillip')),
+
+((SELECT t.id FROM teams t WHERE t.team_name = 'Avengers'),
+(SELECT p.id FROM players p WHERE p.first_name = 'Francis')),
+
+((SELECT t.id FROM teams t WHERE t.team_name = 'Avengers'),
+(SELECT p.id FROM players p WHERE p.first_name = 'Harry')),
+
+((SELECT t.id FROM teams t WHERE t.team_name = 'Suicid Squad'),
+(SELECT p.id FROM players p WHERE p.first_name = 'Francis')),
+
+((SELECT t.id FROM teams t WHERE t.team_name = 'Dream Team'),
+(SELECT p.id FROM players p WHERE p.first_name = 'Francis')),
+
+((SELECT t.id FROM teams t WHERE t.team_name = 'Mugiwara'),
+(SELECT p.id FROM players p WHERE p.first_name = 'Francis')),
+
+((SELECT t.id FROM teams t WHERE t.team_name = 'Mugiwara'),
+(SELECT p.id FROM players p WHERE p.first_name = 'Oscar'))
+;
 

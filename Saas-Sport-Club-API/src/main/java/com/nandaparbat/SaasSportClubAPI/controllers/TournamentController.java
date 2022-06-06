@@ -72,13 +72,10 @@ public List<TournamentCardView> paginatePer10(@RequestParam("page") Long x) {
 };
     // TODO : Per month ? => Time ? implement : Don't implent
 
-    @GetMapping("my-tours")
-
-
     //* ---------- DELETE REQUESTS ----------------------------------
 
     //* WORKS
-    @DeleteMapping("delete-id")
+    @DeleteMapping("/delete-id")
     @ResponseStatus(HttpStatus.OK)
     public void deleteWithId(@RequestParam("id") Long id) {
         tournamentService.deleteWithId(id);
@@ -106,16 +103,12 @@ public List<TournamentCardView> paginatePer10(@RequestParam("page") Long x) {
 
     //* ---------- POST REQUEST
 
-    //!FAILS
+    //*WORKS !!!!
     @PostMapping("/create-tour")
     @ResponseStatus(HttpStatus.CREATED)
     public void tournamentCreate(@RequestBody TournamentCreate inputs){
         tournamentService.tournamentCreate(inputs);
     };
-
-
-
-
 
 
 };

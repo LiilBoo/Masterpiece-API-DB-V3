@@ -51,6 +51,9 @@ public class PairingStyleController {
 
     //* --- DELETE REQUEST
 
+    //! Violates foreign key constraint
+    //! against business logic to every delete a style, even when no tournaments references it
+    // TODO : Keep ? Ask teacher
     @DeleteMapping("/destroy")
     @ResponseStatus(HttpStatus.ACCEPTED)
     void deletePairingStyle(@RequestParam("id") Long id){

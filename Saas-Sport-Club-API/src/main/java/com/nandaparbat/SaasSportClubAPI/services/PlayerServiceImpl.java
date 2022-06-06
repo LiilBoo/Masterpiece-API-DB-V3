@@ -1,18 +1,18 @@
 package com.nandaparbat.SaasSportClubAPI.services;
 
-import com.nandaparbat.SaasSportClubAPI.DTOs.MyToursDTO;
-import com.nandaparbat.SaasSportClubAPI.DTOs.PlayerCreate;
-import com.nandaparbat.SaasSportClubAPI.DTOs.PlayerDTO;
-import com.nandaparbat.SaasSportClubAPI.DTOs.PlayerSignIn;
+import com.nandaparbat.SaasSportClubAPI.DTOs.*;
 import com.nandaparbat.SaasSportClubAPI.entities.Player;
 import com.nandaparbat.SaasSportClubAPI.entities.Role;
 import com.nandaparbat.SaasSportClubAPI.repositories.PlayerRepository;
+import com.nandaparbat.SaasSportClubAPI.repositories.RoleRepository;
 import com.nandaparbat.SaasSportClubAPI.security.Jwt;
 import com.nandaparbat.SaasSportClubAPI.security.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -21,6 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlayerServiceImpl implements PlayerService {
 
+    private final RoleRepository roleRepository;
 
     private final PlayerRepository playerRepository;
 
@@ -48,7 +49,21 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public void updateMyTours(Long id) {
 
-    };
+    }
+
+//    @Override
+//    @Transactional
+//    public void playerRoleSetting(@RequestParam("id") Long playerId, @RequestBody RoleSettingDTO roleBody) {
+//        Player player = playerRepository.getById(playerId);
+//        Role role = roleRepository.getById(roleBody.getRoleId());
+//
+//                      Long number = 1L;
+//
+//        if(!roleBody.getRoleId().equals(number) &&
+//                (roleRepository.existsById(role.getId()))){
+//            player.setRole(role);
+//        };
+//    };
 
     @Override
     public void unregisterFromTournament(Long tourID, Long myPersonalId) {
