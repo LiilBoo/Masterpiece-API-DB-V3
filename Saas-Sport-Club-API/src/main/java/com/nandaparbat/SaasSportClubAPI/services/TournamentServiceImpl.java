@@ -83,24 +83,13 @@ public class TournamentServiceImpl implements TournamentService {
         return tournamentRepository.findAllByIdIsBetween(x,y);
     };
 
-    //* -------- DELETE REQUEST -------
-
-    //* WORKS => HTTP 200
-    @Override
-    public void deleteWithId(Long id) {
-
-        TournamentView tour = tournamentRepository.findWithId(id);
-
-        tournamentRepository.deleteById(tour.getId());
-    };
 
     //* -------- PATCH REQUEST --------
 
     //*Helper Method to update
     public Tournament tournamentUpdate(TournamentPatch inputs, Long id){
 
-        Tournament tour = tournamentRepository.findById(id).get();
-
+        Tournament tour = tournamentRepository.getById(id);
 
 
         if((inputs.getName() != null) &&
@@ -273,6 +262,17 @@ public class TournamentServiceImpl implements TournamentService {
     public void tournamentCreate(TournamentCreate inputs) {
         Tournament tournament = this.tournamentSetting(inputs);
         tournamentRepository.save(tournament);
+    };
+
+    //* -------- DELETE REQUEST -------
+
+    //* WORKS => HTTP 200
+    @Override
+    public void deleteWithId(Long id) {
+
+        TournamentView tour = tournamentRepository.findWithId(id);
+
+        tournamentRepository.deleteById(tour.getId());
     };
 
 

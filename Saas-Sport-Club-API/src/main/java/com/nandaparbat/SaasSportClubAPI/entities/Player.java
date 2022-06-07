@@ -44,8 +44,19 @@ public class Player {
             inverseJoinColumns = @JoinColumn(name = "team_id"))
     private List<Team> teams;
 
-    public void setElo(Integer elo) {
-        this.elo = elo;
+    @ManyToMany
+    @JoinTable(name = "players_tournaments",
+                joinColumns = @JoinColumn(name = "player_id"),
+                inverseJoinColumns = @JoinColumn(name = "tournament_id"))
+    private List<Tournament> tournaments;
+
+
+    public List<Tournament> getTournaments() {
+        return tournaments;
+    };
+
+    public void setTournaments(List<Tournament> tournaments) {
+        this.tournaments = tournaments;
     };
 
     public List<Team> getTeams() {
@@ -54,6 +65,10 @@ public class Player {
 
     public void setTeams(List<Team> teams) {
         this.teams = teams;
+    };
+
+    public void setElo(Integer elo) {
+        this.elo = elo;
     };
 
     public Long getId() {

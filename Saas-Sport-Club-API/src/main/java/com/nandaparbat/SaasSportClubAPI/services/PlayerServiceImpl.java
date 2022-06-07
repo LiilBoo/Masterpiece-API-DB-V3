@@ -1,6 +1,6 @@
 package com.nandaparbat.SaasSportClubAPI.services;
 
-import com.nandaparbat.SaasSportClubAPI.DTOs.*;
+import com.nandaparbat.SaasSportClubAPI.DTOs.players.*;
 import com.nandaparbat.SaasSportClubAPI.entities.Player;
 import com.nandaparbat.SaasSportClubAPI.entities.Role;
 import com.nandaparbat.SaasSportClubAPI.repositories.PlayerRepository;
@@ -11,11 +11,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -31,25 +31,120 @@ public class PlayerServiceImpl implements PlayerService {
 
 
 
+    //TODO : implement
+    //TODO : decode token for id
+    //* Motivated by a Front-End page
     @Override
     public List<MyToursDTO> myToursByMyId(Long id) {
-        return null;
+
+        Player actualPlayer = playerRepository.getById(id);
+
+        List<MyToursDTO> myTournaments = actualPlayer.getTournaments().stream().map(tour -> {
+            MyToursDTO myTour = new MyToursDTO();
+            myTour.setId(tour.getId());
+            myTour.setName(tour.getName());
+            myTour.setContact(tour.getContact());
+            myTour.setFormat(tour.getFormat());
+
+            return  myTour;
+        }).collect(Collectors.toList());
+
+        return myTournaments;
+    };
+
+    //*WORKS
+    @Override
+    public PlayerInfosDTO myInfosByMyId(Long id) {
+
+        Player actualPlayer = playerRepository.getById(id);
+
+        PlayerInfosDTO returnedInfos = new PlayerInfosDTO();
+
+        returnedInfos.setElo(actualPlayer.getElo());
+
+        returnedInfos.setFideNumber(actualPlayer.getFideNumber());
+
+        returnedInfos.setFirstName(actualPlayer.getFirstName());
+
+        returnedInfos.setLastName(actualPlayer.getLastName());
+
+        returnedInfos.setUsername(actualPlayer.getUsername());
+
+        List<PlayerMyTeamsDTO> myTeams = actualPlayer.getTeams().stream().map(team -> {
+
+            PlayerMyTeamsDTO teamInfo = new PlayerMyTeamsDTO();
+
+                teamInfo.setId(team.getId());
+                teamInfo.setTeamName(team.getName());
+
+                return teamInfo;
+        }).collect(Collectors.toList());
+
+        returnedInfos.setMyTeams(myTeams);
+
+        List<PlayerMyToursDTO> myTours = actualPlayer.getTournaments().stream().map(tour -> {
+            PlayerMyToursDTO tournament = new PlayerMyToursDTO();
+            tournament.setId(tour.getId());
+            tournament.setName(tour.getName());
+            return tournament;
+        }).collect(Collectors.toList());
+
+        returnedInfos.setMyTours(myTours);
+
+        return returnedInfos;
+    };
+
+    //*WORKS
+    @Override
+    public List<PlayerIDTO> listAllPlayers() {
+        return playerRepository.findAllProjectedBy(PlayerIDTO.class);
+    };
+
+    //*WORKS
+    @Override
+    public List<PlayerEmailIDTO> listAllPlayersMail() {
+        return playerRepository.findAllProjectedBy(PlayerEmailIDTO.class);
     };
 
     @Override
-    public PlayerDTO myInfosByMyId(Long id) {
-        return null;
+    public void updateMyInfos(PlayerTransactionDTO inputs, Long id) {
+
+        Player player = playerRepository.getById(id);
+
+    if((inputs.getFirstName() != null) &&
+            (!inputs.getFirstName().isEmpty()) &&
+            (!Objects.equals(player.getFirstName(),inputs.getFirstName()))){
+        player.setFirstName(inputs.getFirstName());
     };
 
-    @Override
-    public void updateMyInfos(Long id) {
+        if((inputs.getLastName() != null) &&
+                (!inputs.getLastName().isEmpty()) &&
+                (!Objects.equals(player.getLastName(),inputs.getLastName()))){
+            player.setLastName(inputs.getLastName());
+        };
 
+        if((inputs.getUsername() != null) &&
+                (!inputs.getUsername().isEmpty()) &&
+                (!Objects.equals(player.getUsername(),inputs.getUsername()))){
+            player.setUsername(inputs.getUsername());
+        };
+
+        if((inputs.getElo() > 769) &&
+                (!Objects.equals(player.getElo(), inputs.getElo()))){
+            player.setElo(inputs.getElo());
+        };
+
+        if((!Objects.equals(player.getFideNumber(), inputs.getFideNumber()))){
+            player.setFideNumber(inputs.getFideNumber());
+        };
+
+        playerRepository.save(player);
     };
 
     @Override
     public void updateMyTours(Long id) {
 
-    }
+    };
 
 //    @Override
 //    @Transactional
@@ -72,9 +167,13 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public void deleteMyProfile(Long id) {
-
+        Player player = playerRepository.getById(id);
+        playerRepository.delete(player);
     };
 
+    //? How to sync deletion so that both player and team are updated at the same time
+    //TODO : Ask teacher
+    // TODO : Ask Java wizards
     @Override
     public void deleteMeFromTeam(Long teamId, Long myId) {
 

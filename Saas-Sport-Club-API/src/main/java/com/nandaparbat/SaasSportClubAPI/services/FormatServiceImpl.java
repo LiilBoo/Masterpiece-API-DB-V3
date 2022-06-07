@@ -62,7 +62,8 @@ public class FormatServiceImpl implements FormatService{
 
     //* UPDATE : PATCH REQUEST
 
-    //!Against business logic
+    //TODO : implement -> correct creation typos
+
 
    //* --------- DELETE REQUEST
 
@@ -91,9 +92,7 @@ public class FormatServiceImpl implements FormatService{
             };
             format.setName(inputs.getName());
         };
-    }
-
-    ;
+    };
 
 
 };

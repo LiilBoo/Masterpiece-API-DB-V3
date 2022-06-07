@@ -1,6 +1,6 @@
 package com.nandaparbat.SaasSportClubAPI.services;
 
-import com.nandaparbat.SaasSportClubAPI.DTOs.PlayerDTO;
+import com.nandaparbat.SaasSportClubAPI.DTOs.players.PlayerDTO;
 import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamReadDTO;
 import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamTransactionDTO;
 import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamIDTO;

@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -55,7 +56,13 @@ public class PairingStyleServiceImpl implements PairingStyleService{
 
         PairingStyle pairingStyle = pairingStyleRepository.getById(id);
 
-        pairingStyle.setName(inputs.getName());
+
+
+        if((inputs.getName() != null) &&
+                (!inputs.getName().isEmpty()) &&
+                (!Objects.equals(pairingStyle.getName(), inputs.getName()))){
+            pairingStyle.setName(inputs.getName());
+        };
 
         pairingStyleRepository.save(pairingStyle);
 

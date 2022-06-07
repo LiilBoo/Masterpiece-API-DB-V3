@@ -1,4 +1,4 @@
-package com.nandaparbat.SaasSportClubAPI.DTOs;
+package com.nandaparbat.SaasSportClubAPI.DTOs.players;
 
 import com.nandaparbat.SaasSportClubAPI.entities.Team;
 import lombok.AllArgsConstructor;

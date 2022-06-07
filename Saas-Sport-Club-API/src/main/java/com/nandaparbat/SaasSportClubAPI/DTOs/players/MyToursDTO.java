@@ -1,5 +1,6 @@
-package com.nandaparbat.SaasSportClubAPI.DTOs;
+package com.nandaparbat.SaasSportClubAPI.DTOs.players;
 
+import com.nandaparbat.SaasSportClubAPI.entities.Format;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ public class MyToursDTO {
 
     private String name;
 
-    private String format;
+    private Format format;
 
     private String contact;
 

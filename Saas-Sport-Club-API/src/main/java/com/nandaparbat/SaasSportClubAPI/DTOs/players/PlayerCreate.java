@@ -1,4 +1,4 @@
-package com.nandaparbat.SaasSportClubAPI.DTOs;
+package com.nandaparbat.SaasSportClubAPI.DTOs.players;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

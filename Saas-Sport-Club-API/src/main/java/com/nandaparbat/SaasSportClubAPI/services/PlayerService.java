@@ -1,9 +1,7 @@
 package com.nandaparbat.SaasSportClubAPI.services;
 
-import com.nandaparbat.SaasSportClubAPI.DTOs.*;
+import com.nandaparbat.SaasSportClubAPI.DTOs.players.*;
 import com.nandaparbat.SaasSportClubAPI.security.Jwt;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -18,15 +16,23 @@ public interface PlayerService {
     //* --- READ REQUESTS
 
     //Decode the token to retrieve workable data allowing us to find whose id
+    //*WORKS
     List<MyToursDTO> myToursByMyId(Long id);
 
-    //Decode the token to retrieve workable data allowing us to find whose id
-    PlayerDTO myInfosByMyId(Long id);
+    //TODO : Decode the token to retrieve workable data allowing us to find whose id
+    //*WORKS
+    PlayerInfosDTO myInfosByMyId(Long id);
+
+    //*WORKS
+    List<PlayerIDTO> listAllPlayers();
+
+    //*WORKS
+    List<PlayerEmailIDTO> listAllPlayersMail();
 
     //* ---- UPDATE REQUEST
 
     //relevant retrieved data passed as argument
-    void updateMyInfos(Long id);
+    void updateMyInfos(PlayerTransactionDTO inputs,Long id);
 
     // relevant retrieved data
     void updateMyTours(Long id);

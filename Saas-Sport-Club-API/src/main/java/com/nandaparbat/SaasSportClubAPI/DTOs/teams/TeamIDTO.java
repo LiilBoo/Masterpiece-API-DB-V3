@@ -1,7 +1,7 @@
 package com.nandaparbat.SaasSportClubAPI.DTOs.teams;
 
 
-import com.nandaparbat.SaasSportClubAPI.DTOs.PlayerIDTO;
+import com.nandaparbat.SaasSportClubAPI.DTOs.players.PlayerIDTO;
 
 
 import java.util.List;

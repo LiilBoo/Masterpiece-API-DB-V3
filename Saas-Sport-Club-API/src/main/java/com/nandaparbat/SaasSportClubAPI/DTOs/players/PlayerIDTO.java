@@ -1,4 +1,4 @@
-package com.nandaparbat.SaasSportClubAPI.DTOs;
+package com.nandaparbat.SaasSportClubAPI.DTOs.players;
 
 public interface PlayerIDTO {
 

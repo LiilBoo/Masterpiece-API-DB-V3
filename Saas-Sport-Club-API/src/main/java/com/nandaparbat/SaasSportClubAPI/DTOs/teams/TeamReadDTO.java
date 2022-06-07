@@ -1,6 +1,6 @@
 package com.nandaparbat.SaasSportClubAPI.DTOs.teams;
 
-import com.nandaparbat.SaasSportClubAPI.DTOs.PlayerDTO;;
+import com.nandaparbat.SaasSportClubAPI.DTOs.players.PlayerDTO;;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
