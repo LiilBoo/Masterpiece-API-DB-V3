@@ -2,6 +2,7 @@ package com.nandaparbat.SaasSportClubAPI.repositories;
 
 
 import com.nandaparbat.SaasSportClubAPI.DTOs.TournamentCardView;
+import com.nandaparbat.SaasSportClubAPI.DTOs.TournamentNameView;
 import com.nandaparbat.SaasSportClubAPI.DTOs.TournamentView;
 
 
@@ -29,7 +30,9 @@ public interface TournamentRepository extends JpaRepository<Tournament, Long> {
             "FROM Tournament t WHERE t.event = TRUE")
     List<TournamentViewCard> findAllByEventIsTrue();
 
-//    List<TournamentCardView> findAllByEventIsTrue();
+
+    @Query("SELECT new com.nandaparbat.SaasSportClubAPI.DTOs.TournamentNameView(t.id, t.name, t.format.name, t.contact) FROM Tournament t")
+    List<TournamentNameView> listAdminTournaments();
 
     //* WORKS => DTO
     @Query("SELECT new com.nandaparbat.SaasSportClubAPI.DTOs.TournamentView(t.id, t.name, t.event, t.dateOfStart, t" +

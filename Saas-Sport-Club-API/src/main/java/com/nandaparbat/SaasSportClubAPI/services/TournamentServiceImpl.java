@@ -33,7 +33,13 @@ public class TournamentServiceImpl implements TournamentService {
     @Override
     public List<TournamentCardView> findAllToursCards() {
         return tournamentRepository.findAllProjectedBy(TournamentCardView.class);
+    }
+
+    @Override
+    public List<TournamentNameView> listAdminTournaments() {
+        return tournamentRepository.listAdminTournaments();
     };
+
 
     //* WORKS 100% //Returns a DTO
     @Override

@@ -26,6 +26,11 @@ public class TournamentController {
         return tournamentService.findAllToursCards();
     };
 
+    @GetMapping("/list-admin-tournaments")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TournamentNameView> listAdmintournaments(){
+        return tournamentService.listAdminTournaments();
+    };
 
     //* WORKS => DTO
     @GetMapping("/with-id")

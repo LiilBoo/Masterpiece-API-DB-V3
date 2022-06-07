@@ -1,7 +1,11 @@
 package com.nandaparbat.SaasSportClubAPI.services;
 
-import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamDTO;
+import com.nandaparbat.SaasSportClubAPI.DTOs.PlayerDTO;
+import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamReadDTO;
+import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamTransactionDTO;
 import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamIDTO;
+import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamNameIDTO;
+import com.nandaparbat.SaasSportClubAPI.entities.Player;
 import com.nandaparbat.SaasSportClubAPI.entities.Team;
 import com.nandaparbat.SaasSportClubAPI.repositories.TeamRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +27,7 @@ public class TeamServiceImpl implements TeamService {
 
     //TODO : Test
     @Override
-    public void createTeam(@Valid @RequestBody TeamDTO inputs) {
+    public void createTeam(@Valid @RequestBody TeamTransactionDTO inputs) {
         Team newTeam = new Team();
         newTeam.setName(inputs.getTeamName());
         newTeam.setPlayers(inputs.getTeamPlayers());
@@ -31,25 +36,45 @@ public class TeamServiceImpl implements TeamService {
 
     //* READ REQUESTS
 
-    //TODO : Test
-    // TODO : Add validations
+    //* WORKS !
+    //! Has caused StackOverflow error in previous version
     @Override
     public List<TeamIDTO> listAllTeams() {
         return teamRepository.findAllProjectedBy(TeamIDTO.class);
     };
 
-    //TODO : Test
+    //* WORKS
+    @Override
+    public List<TeamNameIDTO> listAllTeamNames() {
+        return teamRepository.findAllProjectedBy(TeamNameIDTO.class);
+    };
+
+    //*WORKS
     // TODO : Add validation
     @Override
-    public TeamDTO getTeamById(@RequestParam("id") Long id) {
+    public TeamReadDTO getTeamById(@RequestParam("id") Long id) {
 
         Team team = teamRepository.getById(id);
 
-        TeamDTO teamDTO = new TeamDTO();
+        TeamReadDTO teamDTO = new TeamReadDTO();
 
         teamDTO.setId(team.getId());
-        teamDTO.setTeamName(team.getName());
-        teamDTO.setTeamPlayers(team.getPlayers());
+        teamDTO.setName(team.getName());
+
+        List<Player> teamPlayers = team.getPlayers();
+
+       List<PlayerDTO> teamPlayersDTO = teamPlayers.stream().map(player -> {
+           PlayerDTO newPlayer = new PlayerDTO();
+           newPlayer.setFirstName(player.getFirstName());
+           newPlayer.setLastName(player.getLastName());
+           newPlayer.setFideNumber(player.getFideNumber());
+           newPlayer.setElo(player.getElo());
+           newPlayer.setId(player.getId());
+
+           return newPlayer;
+        }).collect(Collectors.toList());
+
+        teamDTO.setPlayers(teamPlayersDTO);
 
         return teamDTO;
     };
@@ -57,7 +82,7 @@ public class TeamServiceImpl implements TeamService {
     //TODO : Test
     // TODO : Add validations
     @Override
-    public void updateTeam(@RequestParam("id") Long id, @RequestBody TeamDTO inputs) {
+    public void updateTeam(@RequestParam("id") Long id, @RequestBody TeamTransactionDTO inputs) {
 
         Team team = teamRepository.getById(id);
 
@@ -67,7 +92,7 @@ public class TeamServiceImpl implements TeamService {
         teamRepository.save(team);
     };
 
-    // TODO : test
+    //*WORKS
     // TODO : Add validation
     @Override
     public void deleteTeam(@RequestParam("id") Long id) {

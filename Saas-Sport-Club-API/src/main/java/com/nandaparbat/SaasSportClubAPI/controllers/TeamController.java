@@ -1,7 +1,9 @@
 package com.nandaparbat.SaasSportClubAPI.controllers;
 
-import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamDTO;
+import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamReadDTO;
+import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamTransactionDTO;
 import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamIDTO;
+import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamNameIDTO;
 import com.nandaparbat.SaasSportClubAPI.services.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,13 +20,20 @@ public class TeamController {
     private final TeamService teamService;
 
     //* CREATE REQUEST
+    //TODO : Add validation -> Max 8 players -> verify players exist
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createTeam(@Valid @RequestBody TeamDTO inputs){
+    public void createTeam(@Valid @RequestBody TeamTransactionDTO inputs){
         teamService.createTeam(inputs);
     };
 
     //* READ REQUESTS
+
+
+    //TODO : Read doc about @JsonIgnore
+    // TODO : learn Request recursivity
+    // TODO : Learn stream API
+    //* WORKS
     @GetMapping("list-all")
     @ResponseStatus(HttpStatus.OK)
     public List<TeamIDTO> listAllTeams(){
@@ -50,20 +59,32 @@ public class TeamController {
 //    at com.fasterxml.jackson.databind.ser.std.CollectionSerializer.serialize(CollectionSerializer.java:107) ~[jackson-databind-2.13.3.jar:2.13.3]
     //
 
-    @GetMapping("one-team")
-    public TeamDTO getTeamById(@RequestParam("id") Long id){
+    //* WORKS
+    @GetMapping("/team-names")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TeamNameIDTO> listAllTeamNames(){
+        return teamService.listAllTeamNames();
+    };
+
+    //*WORKS
+    @GetMapping("/one-team")
+    @ResponseStatus(HttpStatus.OK)
+    public TeamReadDTO getTeamById(@RequestParam("id") Long id){
         return teamService.getTeamById(id);
     };
 
     //* UPDATE REQUEST
 
+    //TODO : test
     @PatchMapping("/change-team")
     @ResponseStatus(HttpStatus.OK)
-    public void updateTeam(@RequestParam("id") Long id, @RequestBody TeamDTO inputs){
+    public void updateTeam(@RequestParam("id") Long id, @RequestBody TeamTransactionDTO inputs){
         teamService.updateTeam(id, inputs);
     };
 
     //* DELETE REQUEST
+
+    //*WORKS
     @DeleteMapping("/delete")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteTeam(@RequestParam("id") Long id){

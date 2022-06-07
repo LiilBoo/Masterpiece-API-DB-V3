@@ -18,6 +18,8 @@ public interface TournamentService {
     //* WORKS => DTO => Front-end Home Page
     List<TournamentCardView> findAllToursCards();
 
+    List<TournamentNameView> listAdminTournaments();
+
     //* WORKS => DTO
     List<TournamentViewCard> findAllByEventIsTrue();
 
