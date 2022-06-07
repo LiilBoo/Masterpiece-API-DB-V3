@@ -128,13 +128,6 @@ public class TournamentServiceImpl implements TournamentService {
 
             Format format = formatRepository.findById(inputs.getFormatId()).get();
 
-//            Format format2 = formatRepository.getById(inputs.getFormatId());
-
-//            //* Extends JpaRepository => checked
-//            //! Autocomplete fails
-//            //! Cannot resolve method
-//            Format format = formatRepository.getReferenceById(inputs.getFormatId());
-
             tour.setFormat(format);
         };
 

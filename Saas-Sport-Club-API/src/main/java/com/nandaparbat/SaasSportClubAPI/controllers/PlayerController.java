@@ -18,6 +18,7 @@ public class PlayerController {
 
     //*READ REQUESTS
 
+    //*WORKS
     @GetMapping("/my-tours")
     @ResponseStatus(HttpStatus.OK)
     public List<MyToursDTO> myToursByMyId(@RequestParam("id") Long id){
@@ -47,8 +48,8 @@ public class PlayerController {
 
     //*UPDATE REQUEST
 
-    //TODO : Test
-    @PatchMapping("update-profile")
+    //*WORKS
+    @PatchMapping("/update-profile")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateMyInfos(@RequestBody PlayerTransactionDTO inputs, @RequestParam("id") Long id){
         playerService.updateMyInfos(inputs, id);

@@ -30,10 +30,9 @@ public class PlayerServiceImpl implements PlayerService {
     private final JwtProvider provider;
 
 
+    //* READ REQUESTS
 
-    //TODO : implement
-    //TODO : decode token for id
-    //* Motivated by a Front-End page
+    //*WORKS
     @Override
     public List<MyToursDTO> myToursByMyId(Long id) {
 
@@ -106,6 +105,7 @@ public class PlayerServiceImpl implements PlayerService {
         return playerRepository.findAllProjectedBy(PlayerEmailIDTO.class);
     };
 
+    //TODO : test
     @Override
     public void updateMyInfos(PlayerTransactionDTO inputs, Long id) {
 
@@ -134,9 +134,6 @@ public class PlayerServiceImpl implements PlayerService {
             player.setElo(inputs.getElo());
         };
 
-        if((!Objects.equals(player.getFideNumber(), inputs.getFideNumber()))){
-            player.setFideNumber(inputs.getFideNumber());
-        };
 
         playerRepository.save(player);
     };
