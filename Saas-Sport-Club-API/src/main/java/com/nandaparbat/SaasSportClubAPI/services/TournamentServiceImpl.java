@@ -15,6 +15,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,6 +39,42 @@ public class TournamentServiceImpl implements TournamentService {
     @Override
     public List<TournamentNameView> listAdminTournaments() {
         return tournamentRepository.listAdminTournaments();
+    }
+
+    @Override
+    public TournamentParticipantsDTO listTourParticipants(Long id) {
+
+        Tournament actualTour = tournamentRepository.getById(id);
+
+        TournamentParticipantsDTO returnedTour = new TournamentParticipantsDTO();
+
+        returnedTour.setId(actualTour.getId());
+
+        returnedTour.setName(actualTour.getName());
+
+        List<Participant> theParticipants = actualTour.getParticipants().stream().map(player -> {
+
+            Participant participant = new Participant();
+
+            participant.setId(player.getId());
+
+            participant.setUsername(player.getUsername());
+
+            participant.setFideNumber(player.getFideNumber());
+
+            participant.setElo(player.getElo());
+
+            return participant;
+        }).collect(Collectors.toList());
+
+        returnedTour.setParticipants(theParticipants);
+
+        return returnedTour;
+    }
+
+    @Override
+    public List<TournamentNameSQL> findMyToursByMyInfo(Long id) {
+        return tournamentRepository.findMyToursByMyInfo(id);
     };
 
 

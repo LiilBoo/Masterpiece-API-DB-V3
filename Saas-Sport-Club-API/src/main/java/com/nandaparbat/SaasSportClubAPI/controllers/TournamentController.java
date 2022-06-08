@@ -2,6 +2,7 @@ package com.nandaparbat.SaasSportClubAPI.controllers;
 
 
 import com.nandaparbat.SaasSportClubAPI.DTOs.*;
+import com.nandaparbat.SaasSportClubAPI.entities.Tournament;
 import com.nandaparbat.SaasSportClubAPI.services.TournamentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,18 @@ public class TournamentController {
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentNameView> listAdmintournaments(){
         return tournamentService.listAdminTournaments();
+    };
+
+    @GetMapping("/list-participants")
+    @ResponseStatus(HttpStatus.OK)
+    public TournamentParticipantsDTO listTourParticipants(@RequestParam("id") Long id) {
+        return tournamentService.listTourParticipants(id);
+    };
+
+    @GetMapping("/my-tournaments")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TournamentNameSQL> findMyToursByMyInfo(@RequestParam("id") Long id) {
+        return tournamentService.findMyToursByMyInfo(id);
     };
 
     //* WORKS => DTO

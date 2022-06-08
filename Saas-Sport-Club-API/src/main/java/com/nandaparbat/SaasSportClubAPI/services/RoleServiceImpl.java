@@ -1,6 +1,6 @@
 package com.nandaparbat.SaasSportClubAPI.services;
 
-import com.nandaparbat.SaasSportClubAPI.DTOs.RoleIDTO;
+import com.nandaparbat.SaasSportClubAPI.DTOs.roles.RoleIDTO;
 import com.nandaparbat.SaasSportClubAPI.DTOs.roles.RoleTransactionDTO;
 import com.nandaparbat.SaasSportClubAPI.entities.Role;
 import com.nandaparbat.SaasSportClubAPI.repositories.RoleRepository;

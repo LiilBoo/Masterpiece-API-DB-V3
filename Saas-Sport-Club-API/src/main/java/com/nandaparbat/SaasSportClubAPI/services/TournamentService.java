@@ -1,6 +1,7 @@
 package com.nandaparbat.SaasSportClubAPI.services;
 
 import com.nandaparbat.SaasSportClubAPI.DTOs.*;
+import com.nandaparbat.SaasSportClubAPI.entities.Tournament;
 
 import java.util.List;
 
@@ -18,7 +19,13 @@ public interface TournamentService {
     //* WORKS => DTO => Front-end Home Page
     List<TournamentCardView> findAllToursCards();
 
+    //*WORKS
     List<TournamentNameView> listAdminTournaments();
+
+    //*WORKS
+    TournamentParticipantsDTO listTourParticipants(Long id);
+
+    List<TournamentNameSQL> findMyToursByMyInfo(Long id);
 
     //* WORKS => DTO
     List<TournamentViewCard> findAllByEventIsTrue();
@@ -38,18 +45,17 @@ public interface TournamentService {
 
     //*--------- DELETE requests -------------
 
-    //* WORKS => Returns ... nothing ?
+    //* WORKS
     void deleteWithId(Long id);
 
     //* -- PATCH Requests ✅
+    //*WORKS
     void update1Tournament(TournamentPatch inputs, Long id);
 
     // ! --------- CHECK LINE ---------- //
 
 
     void overrideTournament(TournamentPatch inputs, Long id);
-
-
 
 
     //* -- PUT Requests

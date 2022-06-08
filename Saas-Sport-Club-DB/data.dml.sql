@@ -124,7 +124,7 @@ TRUE,
 (SELECT p.id
 FROM pairing_styles p WHERE p.pairing_style = 'Suisse'),
 'PINDRIN',
-'M.INDRIN 06 72 27 35 65',
+'H@duck.com',
 220,
 1200,
 800,
@@ -146,7 +146,7 @@ TRUE,
 (SELECT p.id
  FROM pairing_styles p WHERE p.pairing_style = 'Suisse'),
 'PINDRIN',
-'M.INDRIN 06 72 27 35 65',
+'H@duck.com',
 220,
 500,
 350,
@@ -168,7 +168,7 @@ TRUE,
 (SELECT p.id
  FROM pairing_styles p WHERE p.pairing_style = 'Suisse'),
 'PINDRIN',
-'M.INDRIN 06 72 27 35 65',
+'H@duck.com',
 220,
 250,
 150,
@@ -432,6 +432,27 @@ INSERT INTO tournaments_players VALUES
  (SELECT p.id FROM players p WHERE p.first_name = 'Phillipe')),
 
 ((SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Championnat de Paris IdF 2022'),
+ (SELECT p.id FROM players p WHERE p.first_name = 'Selena')),
+
+((SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Festival International d''Echecs de Clichy 2022'),
+ (SELECT p.id FROM players p WHERE p.first_name = 'Oscar')),
+
+((SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Festival International d''Echecs de Clichy 2022'),
+ (SELECT p.id FROM players p WHERE p.first_name = 'Phillip')),
+
+((SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Festival International d''Echecs de Clichy 2022'),
+ (SELECT p.id FROM players p WHERE p.first_name = 'Francis')),
+
+((SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Festival International d''Echecs de Clichy 2022'),
+ (SELECT p.id FROM players p WHERE p.first_name = 'Harry')),
+
+((SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Festival International d''Echecs de Clichy 2022'),
+ (SELECT p.id FROM players p WHERE p.first_name = 'David')),
+
+((SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Festival International d''Echecs de Clichy 2022'),
+ (SELECT p.id FROM players p WHERE p.first_name = 'Phillipe')),
+
+((SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Festival International d''Echecs de Clichy 2022'),
  (SELECT p.id FROM players p WHERE p.first_name = 'Selena'))
 ;
 -- end of tournaments_players

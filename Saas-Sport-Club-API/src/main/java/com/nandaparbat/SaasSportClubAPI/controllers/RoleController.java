@@ -1,6 +1,6 @@
 package com.nandaparbat.SaasSportClubAPI.controllers;
 
-import com.nandaparbat.SaasSportClubAPI.DTOs.RoleIDTO;
+import com.nandaparbat.SaasSportClubAPI.DTOs.roles.RoleIDTO;
 import com.nandaparbat.SaasSportClubAPI.DTOs.roles.RoleTransactionDTO;
 import com.nandaparbat.SaasSportClubAPI.services.RoleService;
 import lombok.RequiredArgsConstructor;
