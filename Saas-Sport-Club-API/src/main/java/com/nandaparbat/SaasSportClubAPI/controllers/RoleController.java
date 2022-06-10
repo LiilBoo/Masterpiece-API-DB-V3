@@ -25,14 +25,7 @@ public class RoleController {
         roleService.createRole(inputs);
     };
 
-    //*UPDATE REQUEST
 
-    //*WORKS
-    @PatchMapping("/update-role")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateRole(@RequestBody RoleTransactionDTO inputs, @RequestParam("id") Long id){
-        roleService.updateRole(inputs, id);
-    };
 
     //*READ REQUESTS
 
@@ -41,6 +34,15 @@ public class RoleController {
     @ResponseStatus(HttpStatus.OK)
     public List<RoleIDTO> listOfRoles(){
         return roleService.listOfRoles();
+    };
+
+    //*UPDATE REQUEST
+
+    //*WORKS
+    @PatchMapping("/update-role")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateRole(@RequestBody RoleTransactionDTO inputs, @RequestParam("id") Long id){
+        roleService.updateRole(inputs, id);
     };
 
     //*DELETE REQUEST

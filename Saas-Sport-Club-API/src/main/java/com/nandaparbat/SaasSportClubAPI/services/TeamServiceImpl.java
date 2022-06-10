@@ -7,6 +7,7 @@ import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamIDTO;
 import com.nandaparbat.SaasSportClubAPI.DTOs.teams.TeamNameIDTO;
 import com.nandaparbat.SaasSportClubAPI.entities.Player;
 import com.nandaparbat.SaasSportClubAPI.entities.Team;
+import com.nandaparbat.SaasSportClubAPI.repositories.PlayerRepository;
 import com.nandaparbat.SaasSportClubAPI.repositories.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,13 +24,24 @@ public class TeamServiceImpl implements TeamService {
 
     private final TeamRepository teamRepository;
 
+    private final PlayerRepository playerRepository;
+
     //* CREATE REQUEST
 
     //TODO : Test
+    //TODO:  VERIFY Players exist
     @Override
     public void createTeam(@Valid @RequestBody TeamTransactionDTO inputs) {
         Team newTeam = new Team();
         newTeam.setName(inputs.getTeamName());
+        //TODO: Test a practical case from Front-end
+        //*----- verifying players exist
+//        List<Player> realPlayers =
+//                inputs.getTeamPlayers().stream().filter(
+//                 player ->   (player != null) && (playerRepository.getById(player.getId()) != null)
+//                ).collect(Collectors.toList());
+        //*-------
+
         newTeam.setPlayers(inputs.getTeamPlayers());
         teamRepository.save(newTeam);
     };
@@ -70,6 +82,7 @@ public class TeamServiceImpl implements TeamService {
            newPlayer.setFideNumber(player.getFideNumber());
            newPlayer.setElo(player.getElo());
            newPlayer.setId(player.getId());
+
 
            return newPlayer;
         }).collect(Collectors.toList());

@@ -32,6 +32,14 @@ public class PlayerController {
         return playerService.myInfosByMyId(id);
     };
 
+    @GetMapping("/register-to-tour")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void registerToTournament(@RequestParam("tourId") Long tourId,
+                                     @RequestParam("myPersonalId") Long myPersonalId){
+
+         playerService.registerToTournament(tourId, myPersonalId);
+    };
+
     //*WORKS
     @GetMapping("/all-players")
     @ResponseStatus(HttpStatus.OK)

@@ -27,5 +27,4 @@ public interface FormatService {
     void updateFormat(FormatDTO inputs, Long id);
     //* --- DELETE REQUEST
     void deleteFormat(Long id);
-
 };

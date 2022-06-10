@@ -18,9 +18,8 @@ public class FormatServiceImpl implements FormatService{
 
     private final FormatRepository formatRepository;
 
-    //* CREATE : POST REQUEST
-
-
+    //* --------- CREATE REQUEST
+    //*WORKS
     @Override
     @Transactional
     public void createFormat(FormatDTO inputs) {
@@ -32,13 +31,13 @@ public class FormatServiceImpl implements FormatService{
         formatRepository.save(format);
     };
 
-    //* READ ------- GET REQUESTS
+    //* ------- READ REQUESTS
 
-    //TODO : Case sensitivity
+
+    //* WORKS => DTO
     @Override
-    public List<FormatIDTO> findAllByNameEquals(String formatName) {
-
-        return formatRepository.findAllByNameEquals(formatName);
+    public List<FormatIDTO> findAllProjectedBy() {
+        return formatRepository.findAllProjectedBy(FormatIDTO.class);
     };
 
     //* WORKS => DTO
@@ -54,28 +53,15 @@ public class FormatServiceImpl implements FormatService{
         return returnedFormat;
     };
 
-    //* WORKS => DTO
+    //*WORKS
+    //TODO : Case sensitivity
     @Override
-    public List<FormatIDTO> findAllProjectedBy() {
-       return formatRepository.findAllProjectedBy(FormatIDTO.class);
+    public List<FormatIDTO> findAllByNameEquals(String formatName) {
+
+        return formatRepository.findAllByNameEquals(formatName);
     };
 
     //* UPDATE : PATCH REQUEST
-
-    //TODO : implement -> correct creation typos
-
-
-   //* --------- DELETE REQUEST
-
-    //* WORKS
-    @Override
-    public void deleteFormat(Long id) {
-
-        Format format = formatRepository.getById(id);
-
-        formatRepository.deleteById(format.getId());
-
-    }
 
     @Override
     @Transactional
@@ -94,5 +80,17 @@ public class FormatServiceImpl implements FormatService{
         };
     };
 
+
+   //* --------- DELETE REQUEST
+
+    //* WORKS
+    @Override
+    public void deleteFormat(Long id) {
+
+        Format format = formatRepository.getById(id);
+
+        formatRepository.deleteById(format.getId());
+
+    };
 
 };

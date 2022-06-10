@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
+    //*READ REQUEST
 
     //* WORKS => DTO
     <Type> List<Type> findAllProjectedBy(Class<Type> type);
@@ -16,4 +17,4 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
     Role findByRoleName(String roleName);
 
     boolean existsById(Long aLong);
-}
+};

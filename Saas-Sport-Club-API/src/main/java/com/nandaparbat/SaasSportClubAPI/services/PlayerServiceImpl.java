@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PlayerServiceImpl implements PlayerService {
 
-    private final RoleRepository roleRepository;
 
     private final PlayerRepository playerRepository;
 
@@ -138,9 +137,11 @@ public class PlayerServiceImpl implements PlayerService {
         playerRepository.save(player);
     };
 
+    //*TODO implement
     @Override
-    public void updateMyTours(Long id) {
-
+    public void registerToTournament(Long tourId, Long playerId) {
+        playerRepository.registerToTournament( tourId, playerId);
+        playerRepository.registeredToTourUpdateInfos(playerId, tourId);
     };
 
 //    @Override
@@ -157,11 +158,13 @@ public class PlayerServiceImpl implements PlayerService {
 //        };
 //    };
 
+    //TODO : implement
     @Override
     public void unregisterFromTournament(Long tourID, Long myPersonalId) {
 
     };
 
+    //*WORKS
     @Override
     public void deleteMyProfile(Long id) {
         Player player = playerRepository.getById(id);
@@ -178,8 +181,6 @@ public class PlayerServiceImpl implements PlayerService {
 
 
 
-
-    //TODO : ADD Business logic : fide elo, fide number, firstname, lastname,
 
     //! AUTH
     //! DONT MODIFY
@@ -199,8 +200,6 @@ public class PlayerServiceImpl implements PlayerService {
         player.setElo(inputs.getElo());
         player.setFideNumber(inputs.getFideNumber());
         //*-------------------
-
-
 
         playerRepository.save(player);
     };

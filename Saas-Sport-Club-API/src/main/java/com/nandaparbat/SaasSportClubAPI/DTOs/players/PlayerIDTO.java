@@ -12,4 +12,6 @@ public interface PlayerIDTO {
 
     int getElo();
 
+    String getUsername();
+
 };

@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface TeamRepository extends JpaRepository<Team, Long> {
 
+    //*READ REQUESTS
+
     //* WORKS => DTO
     <Type> List<Type> findAllProjectedBy(Class<Type> type);
 

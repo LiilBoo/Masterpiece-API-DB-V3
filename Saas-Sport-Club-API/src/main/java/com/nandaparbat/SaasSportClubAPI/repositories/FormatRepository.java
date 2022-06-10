@@ -11,6 +11,8 @@ import java.util.List;
 public interface FormatRepository extends JpaRepository<Format, Long> {
 
 
+    //* READ REQUESTS
+
     //* WORKS => DTO
     <Type> List<Type> findAllProjectedBy(Class<Type> type);
 

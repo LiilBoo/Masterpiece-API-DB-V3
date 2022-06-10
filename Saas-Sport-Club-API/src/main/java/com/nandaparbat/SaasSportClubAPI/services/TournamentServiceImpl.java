@@ -352,7 +352,7 @@ public class TournamentServiceImpl implements TournamentService {
 
             tournamentRepository.save(tour);
 
-    };
+    }
 
 
 

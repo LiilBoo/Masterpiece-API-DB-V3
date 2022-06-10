@@ -18,7 +18,7 @@ public class PairingStyleServiceImpl implements PairingStyleService{
 
     //* -------- CREATE REQUEST
 
-    //*Perfect
+    //*WORKS
     @Override
     public void createPairingStyle(PairingStyleDTO inputs) {
 
@@ -43,7 +43,7 @@ public class PairingStyleServiceImpl implements PairingStyleService{
         return pairingStyleDTO;
     };
 
-
+    //*WORKS
     @Override
     public List<PairingStyleIDTO> listOfPairings() {
         return pairingStyleRepository.findAllProjectedBy(PairingStyleIDTO.class);
@@ -51,6 +51,7 @@ public class PairingStyleServiceImpl implements PairingStyleService{
 
     //* ---- UPDATE REQUEST
 
+    //*WORKS
     @Override
     public void updatePairingStyle(PairingStyleDTO inputs, Long id) {
 
@@ -69,7 +70,7 @@ public class PairingStyleServiceImpl implements PairingStyleService{
     };
 
     //* ---- DELETE REQUEST
-
+    //*WORKS
     @Override
     public void deletePairingStyle(Long id) {
 

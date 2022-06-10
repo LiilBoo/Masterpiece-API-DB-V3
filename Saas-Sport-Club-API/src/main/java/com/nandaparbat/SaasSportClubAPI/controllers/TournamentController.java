@@ -27,18 +27,21 @@ public class TournamentController {
         return tournamentService.findAllToursCards();
     };
 
+    //* WORKS => DTO
     @GetMapping("/list-admin-tournaments")
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentNameView> listAdmintournaments(){
         return tournamentService.listAdminTournaments();
     };
 
+    //*WORKS => DTO
     @GetMapping("/list-participants")
     @ResponseStatus(HttpStatus.OK)
     public TournamentParticipantsDTO listTourParticipants(@RequestParam("id") Long id) {
         return tournamentService.listTourParticipants(id);
     };
 
+    //*WORKS => DTO
     @GetMapping("/my-tournaments")
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentNameSQL> findMyToursByMyInfo(@RequestParam("id") Long id) {
@@ -94,10 +97,11 @@ public List<TournamentCardView> paginatePer10(@RequestParam("page") Long x) {
 
     //* WORKS
     @DeleteMapping("/delete-id")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteWithId(@RequestParam("id") Long id) {
         tournamentService.deleteWithId(id);
     };
+
 
     //* ---------- PATCH REQUESTS ------------------------------
 

@@ -35,9 +35,9 @@ public interface PlayerService {
     void updateMyInfos(PlayerTransactionDTO inputs,Long id);
 
     // relevant retrieved data
-    void updateMyTours(Long id);
+    void registerToTournament(Long tourId, Long playerId);
 
-//    void updateMyTeams();
+
 
     //* --- ADMIN REQUESTS Relative to users
 

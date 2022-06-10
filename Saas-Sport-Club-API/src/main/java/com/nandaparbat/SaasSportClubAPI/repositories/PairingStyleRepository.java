@@ -10,6 +10,8 @@ import java.util.List;
 public interface PairingStyleRepository extends JpaRepository<PairingStyle, Long> {
 
 
+    //*READ REQUESTS
+
     //* WORKS => DTO
     <Type> List<Type> findAllProjectedBy(Class<Type> type);
 
