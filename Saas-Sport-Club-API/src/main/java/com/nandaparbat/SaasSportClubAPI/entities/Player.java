@@ -39,13 +39,13 @@ public class Player {
     private Role role;
 
     @ManyToMany
-    @JoinTable(name = "players_teams",
+    @JoinTable(name = "teams_players",
             joinColumns = @JoinColumn(name = "player_id"),
             inverseJoinColumns = @JoinColumn(name = "team_id"))
     private List<Team> teams;
 
     @ManyToMany
-    @JoinTable(name = "players_tournaments",
+    @JoinTable(name = "tournaments_players",
                 joinColumns = @JoinColumn(name = "player_id"),
                 inverseJoinColumns = @JoinColumn(name = "tournament_id"))
     private List<Tournament> tournaments;

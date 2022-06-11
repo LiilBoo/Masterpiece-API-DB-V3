@@ -19,6 +19,9 @@ public interface PlayerService {
     //*WORKS
     List<MyToursDTO> myToursByMyId(Long id);
 
+    //*WORKS
+    List<MyTeamsDTO> myTeamsByMyId(Long id);
+
     //TODO : Decode the token to retrieve workable data allowing us to find whose id
     //*WORKS
     PlayerInfosDTO myInfosByMyId(Long id);
@@ -36,6 +39,7 @@ public interface PlayerService {
 
     // relevant retrieved data
     void registerToTournament(Long tourId, Long playerId);
+
 
 
 

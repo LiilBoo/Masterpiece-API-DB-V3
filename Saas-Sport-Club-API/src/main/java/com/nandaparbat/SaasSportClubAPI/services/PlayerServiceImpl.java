@@ -48,6 +48,23 @@ public class PlayerServiceImpl implements PlayerService {
         }).collect(Collectors.toList());
 
         return myTournaments;
+    }
+
+    @Override
+    public List<MyTeamsDTO> myTeamsByMyId(Long id) {
+
+        Player actualPlayer = playerRepository.getById(id);
+
+        List<MyTeamsDTO> myTeams = actualPlayer.getTeams().stream().map(actualTeam -> {
+            MyTeamsDTO team = new MyTeamsDTO();
+            team.setId(actualTeam.getId());
+            team.setName(actualTeam.getName());
+
+            return team;
+
+        }).collect(Collectors.toList());
+
+        return myTeams;
     };
 
     //*WORKS
@@ -137,11 +154,10 @@ public class PlayerServiceImpl implements PlayerService {
         playerRepository.save(player);
     };
 
-    //*TODO implement
+    //*WORKS
     @Override
     public void registerToTournament(Long tourId, Long playerId) {
         playerRepository.registerToTournament( tourId, playerId);
-        playerRepository.registeredToTourUpdateInfos(playerId, tourId);
     };
 
 //    @Override

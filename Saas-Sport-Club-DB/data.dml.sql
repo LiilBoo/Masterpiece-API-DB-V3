@@ -354,33 +354,33 @@ VALUES
 ;
 -- validated insert
 -- end of teams
-
-INSERT INTO players_teams VALUES
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Oscar'),
- (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Phillip'),
- (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
- (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Harry'),
- (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
- (SELECT t.id FROM teams t WHERE t.team_name = 'Suicid Squad')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
- (SELECT t.id FROM teams t WHERE t.team_name = 'Dream Team')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
- (SELECT t.id FROM teams t WHERE t.team_name = 'Mugiwara')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Oscar'),
- (SELECT t.id FROM teams t WHERE t.team_name = 'Mugiwara'))
-;
+--
+-- INSERT INTO players_teams VALUES
+--
+-- ((SELECT p.id FROM players p WHERE p.first_name = 'Oscar'),
+--  (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
+--
+-- ((SELECT p.id FROM players p WHERE p.first_name = 'Phillip'),
+--  (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
+--
+-- ((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
+--  (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
+--
+-- ((SELECT p.id FROM players p WHERE p.first_name = 'Harry'),
+--  (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
+--
+-- ((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
+--  (SELECT t.id FROM teams t WHERE t.team_name = 'Suicid Squad')),
+--
+-- ((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
+--  (SELECT t.id FROM teams t WHERE t.team_name = 'Dream Team')),
+--
+-- ((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
+--  (SELECT t.id FROM teams t WHERE t.team_name = 'Mugiwara')),
+--
+-- ((SELECT p.id FROM players p WHERE p.first_name = 'Oscar'),
+--  (SELECT t.id FROM teams t WHERE t.team_name = 'Mugiwara'))
+-- ;
 -- end of players_teams
 -- validated insert
 
@@ -408,7 +408,16 @@ INSERT INTO teams_players VALUES
 (SELECT p.id FROM players p WHERE p.first_name = 'Francis')),
 
 ((SELECT t.id FROM teams t WHERE t.team_name = 'Mugiwara'),
-(SELECT p.id FROM players p WHERE p.first_name = 'Oscar'))
+(SELECT p.id FROM players p WHERE p.first_name = 'Oscar')),
+
+((SELECT t.id FROM teams t WHERE t.team_name = 'Mugiwara'),
+(SELECT p.id FROM players p WHERE p.first_name = 'Selena')),
+
+((SELECT t.id FROM teams t WHERE t.team_name = 'Dream Team'),
+(SELECT p.id FROM players p WHERE p.first_name = 'Selena')),
+
+((SELECT t.id FROM teams t WHERE t.team_name = 'Suicid Squad'),
+(SELECT p.id FROM players p WHERE p.first_name = 'Selena'))
 ;
 
 INSERT INTO tournaments_players VALUES
@@ -456,41 +465,4 @@ INSERT INTO tournaments_players VALUES
  (SELECT p.id FROM players p WHERE p.first_name = 'Selena'))
 ;
 -- end of tournaments_players
--- validated inserts
-
-INSERT INTO players_tournaments VALUES
-((SELECT p.id FROM players p WHERE p.first_name = 'Oscar'),
-(SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Championnat de Paris IdF 2022')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Phillip'),
-(SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Championnat de Paris IdF 2022')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
-(SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Championnat de Paris IdF 2022')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Harry'),
-(SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Championnat de Paris IdF 2022')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'David'),
-(SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Championnat de Paris IdF 2022')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Phillipe'),
-(SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Championnat de Paris IdF 2022')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Selena'),
-(SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Championnat de ' ||
-                                                          'Paris IdF 2022')),
-((SELECT p.id FROM players p WHERE p.first_name = 'Oscar'),
- (SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Festival International d''Echecs de Clichy 2022')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
- (SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Festival International d''Echecs de Clichy 2022')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Harry'),
- (SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Festival International d''Echecs de Clichy 2022')),
-
-((SELECT p.id FROM players p WHERE p.first_name = 'Phillip'),
- (SELECT t.id FROM tournaments t WHERE t.tournament_name = 'Festival International d''Echecs de Clichy 2022'))
- ;
--- end of insert for players_tournaments
 -- validated inserts

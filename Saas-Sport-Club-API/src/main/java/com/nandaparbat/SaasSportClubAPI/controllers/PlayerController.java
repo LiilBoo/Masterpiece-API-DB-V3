@@ -25,6 +25,12 @@ public class PlayerController {
         return playerService.myToursByMyId(id);
     };
 
+    @GetMapping("my-teams")
+    @ResponseStatus(HttpStatus.OK)
+    public List<MyTeamsDTO> myTeamsByMyId(@RequestParam("id") Long id){
+        return playerService.myTeamsByMyId(id);
+    };
+
     //*WORKS
     @GetMapping("/my-infos")
     @ResponseStatus(HttpStatus.OK)
@@ -47,12 +53,12 @@ public class PlayerController {
        return playerService.listAllPlayers();
     };
 
-    //*WORKS
-    @GetMapping("/list-mails")
-    @ResponseStatus(HttpStatus.OK)
-    public List<PlayerEmailIDTO> listAllPlayersMail(){
-        return playerService.listAllPlayersMail();
-    };
+//    //*WORKS
+//    @GetMapping("/list-mails")
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<PlayerEmailIDTO> listAllPlayersMail(){
+//        return playerService.listAllPlayersMail();
+//    };
 
     //*UPDATE REQUEST
 
