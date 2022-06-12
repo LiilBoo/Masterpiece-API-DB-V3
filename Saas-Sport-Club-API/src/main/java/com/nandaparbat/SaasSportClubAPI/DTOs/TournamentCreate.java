@@ -21,35 +21,48 @@ public class TournamentCreate {
     private String name;
 
     @NotBlank
+    @NotNull
+    @FutureOrPresent
     private LocalDate dateOfStart;
 
+    @NotBlank
+    @NotNull
+    @FutureOrPresent
     private LocalDate dateOfEnd;
 
-    // TODO : works ?
-    @Min(1)
+
+    @Positive
     private int numberOfRounds;
 
+    @Positive
     private Long formatId;
 
+    @Positive
     private Long pairingId;
 
     @NotBlank
     @Size(min=5, max=100)
     private String organisator;
 
+    @NotBlank
     private String contact; //personalUrl or email
 
+    @Positive
     private Integer capacity;
 
+    @PositiveOrZero
     private Integer firstPrice;
-    //TODO : postgreSQL does not autocomplete to BIGINT;
 
+    @PositiveOrZero
     private Integer secondPrice;
 
+    @PositiveOrZero
     private Integer thirdPrice;
 
+    @PositiveOrZero
     private Integer registerFeeSenior;
 
+    @PositiveOrZero
     private Integer registerFeeJunior;
 
     @NotBlank

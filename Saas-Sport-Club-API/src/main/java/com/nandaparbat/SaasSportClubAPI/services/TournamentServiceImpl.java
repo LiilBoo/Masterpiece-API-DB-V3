@@ -244,7 +244,7 @@ public class TournamentServiceImpl implements TournamentService {
     //* WORKS
     //? Did work : test more
     @Transactional
-    public Tournament tournamentSetting(@Nullable TournamentCreate inputs){
+    public Tournament tournamentSetting(TournamentCreate inputs){
         Tournament tournament = new Tournament();
         //-- tournament : tournament name
         tournament.setName(inputs.getName());

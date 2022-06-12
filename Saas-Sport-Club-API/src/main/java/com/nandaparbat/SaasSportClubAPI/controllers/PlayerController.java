@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.nandaparbat.SaasSportClubAPI.security.Jwt;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -65,7 +66,7 @@ public class PlayerController {
     //*WORKS
     @PatchMapping("/update-profile")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateMyInfos(@RequestBody PlayerTransactionDTO inputs, @RequestParam("id") Long id){
+    public void updateMyInfos(@Valid @RequestBody PlayerTransactionDTO inputs, @RequestParam("id") Long id){
         playerService.updateMyInfos(inputs, id);
     };
     //* DELETE REQUESTS

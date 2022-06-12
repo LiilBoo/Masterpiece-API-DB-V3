@@ -65,11 +65,11 @@ CREATE TABLE tournaments (
     organisator VARCHAR(100) NOT NULL,
     contact VARCHAR(255) NOT NULL,
     capacity INTEGER ,
-    first_price INTEGER ,
-    second_price INTEGER ,
-    third_price INTEGER ,
-    register_fee_senior SMALLINT,
-    register_fee_junior SMALLINT,
+    first_price INTEGER DEFAULT 0,
+    second_price INTEGER DEFAULT 0,
+    third_price INTEGER DEFAULT 0,
+    register_fee_senior SMALLINT DEFAULT 0,
+    register_fee_junior SMALLINT DEFAULT 0,
     description VARCHAR(255) NOT NULL,
     CONSTRAINT fk_format_name
         FOREIGN KEY (format)

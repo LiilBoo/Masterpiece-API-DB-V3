@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Data
@@ -12,11 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 public class TeamTransactionDTO {
 
-
+    @NotBlank
     private String teamName;
 
-    //! Maximum 8 players validation
-    //! Verify the players exist !!!
+    @Size(min=4, max=8)
     private List<Player> teamPlayers;
 
 };

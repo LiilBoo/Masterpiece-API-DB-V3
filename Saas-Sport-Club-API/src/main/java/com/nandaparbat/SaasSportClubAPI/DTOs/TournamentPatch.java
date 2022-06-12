@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class TournamentPatch {
 
-    private java.lang.Long id;
+
 
     private String name;
 

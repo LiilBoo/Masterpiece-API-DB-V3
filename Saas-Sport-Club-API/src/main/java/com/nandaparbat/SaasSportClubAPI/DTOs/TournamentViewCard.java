@@ -10,25 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TournamentViewCard {
 
-//    //!CONSTRUCTOR FOR CONTACT/FORMAT @Queries
-//    public TournamentViewCard(Long id,
-//                          String name,
-//                          String format,
-//                          String pairingStyle,
-//                          Integer firstPrice,
-//                          Integer registerFeeSenior,
-//                          Integer registerFeeJunior,
-//                          String description) {
-//        this.id = id;
-//        this.name = name;
-//        this.format = format;
-//        this.pairingStyle = pairingStyle;
-//        this.firstPrice = firstPrice;
-//        this.registerFeeSenior = registerFeeSenior;
-//        this.registerFeeJunior = registerFeeJunior;
-//        this.description = description;
-//    }
-
     private java.lang.Long id;
 
     private String name;
