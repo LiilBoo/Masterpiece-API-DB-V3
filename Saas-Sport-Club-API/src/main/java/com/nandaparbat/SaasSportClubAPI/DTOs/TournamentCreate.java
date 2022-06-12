@@ -50,25 +50,23 @@ public class TournamentCreate {
     @Positive
     private Integer capacity;
 
-    @PositiveOrZero
+
     private Integer firstPrice;
 
-    @PositiveOrZero
+
     private Integer secondPrice;
 
-    @PositiveOrZero
+
     private Integer thirdPrice;
 
-    @PositiveOrZero
+
     private Integer registerFeeSenior;
 
-    @PositiveOrZero
+
     private Integer registerFeeJunior;
 
     @NotBlank
     @Size(min=1, max=255)
     private String description;
-
-
 
 };
