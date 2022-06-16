@@ -20,26 +20,26 @@ public class PlayerController {
     //*READ REQUESTS
 
     //*WORKS
-    @GetMapping("/my-tours")
+    @GetMapping("/users/my-tours")
     @ResponseStatus(HttpStatus.OK)
     public List<MyToursDTO> myToursByMyId(@RequestParam("id") Long id){
         return playerService.myToursByMyId(id);
     };
 
-    @GetMapping("my-teams")
+    @GetMapping("/users/my-teams")
     @ResponseStatus(HttpStatus.OK)
     public List<MyTeamsDTO> myTeamsByMyId(@RequestParam("id") Long id){
         return playerService.myTeamsByMyId(id);
     };
 
     //*WORKS
-    @GetMapping("/my-infos")
+    @GetMapping("/users/my-infos")
     @ResponseStatus(HttpStatus.OK)
     public PlayerInfosDTO myInfosByMyId(@RequestParam("id") Long id){
         return playerService.myInfosByMyId(id);
     };
 
-    @GetMapping("/register-to-tour")
+    @GetMapping("/users/register-to-tour")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void registerToTournament(@RequestParam("tourId") Long tourId,
                                      @RequestParam("myPersonalId") Long myPersonalId){
@@ -64,7 +64,7 @@ public class PlayerController {
     //*UPDATE REQUEST
 
     //*WORKS
-    @PatchMapping("/update-profile")
+    @PatchMapping("/users/update-profile")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateMyInfos(@Valid @RequestBody PlayerTransactionDTO inputs, @RequestParam("id") Long id){
         playerService.updateMyInfos(inputs, id);
@@ -78,35 +78,15 @@ public class PlayerController {
         playerService.deleteMyProfile(id);
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //*WORKS
-    @PostMapping("/create")
+    @PostMapping("/users/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody PlayerCreate inputs){
         playerService.create(inputs);
     };
 
     //*WORKS
-    @PostMapping("/sign-in")
+    @PostMapping("/users/sign-in")
     @ResponseStatus(HttpStatus.OK)
     public Jwt signIn(@RequestBody PlayerSignIn inputs){
         return playerService.signIn(inputs);

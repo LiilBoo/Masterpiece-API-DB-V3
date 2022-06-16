@@ -7,6 +7,8 @@ public interface TournamentCardView {
 
     public java.lang.Long getId();
 
+    public boolean isEvent();
+
     public String getName();
 
     public PairingStyle getPairingStyle();
@@ -19,6 +21,6 @@ public interface TournamentCardView {
 
     public Integer getRegisterFeeJunior();
 
-//    public String getDescription();
+    public String getDescription();
 
 };

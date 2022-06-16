@@ -11,8 +11,7 @@
 ) VALUES
 ('ROLE_SUPER_ADMIN'),
 ('ROLE_ADMIN'),
-('ROLE_ORGANISATOR'),
-('ROLE_CAPTAIN')
+('ROLE_ORGANISATOR')
 ;
 -- semi-colon is here : end of roles insertion
 
@@ -34,7 +33,7 @@ INSERT INTO players (
  (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_SUPER_ADMIN')),
 
 ('Phillipe', 'V', 339889534, 1399, '12345678', 'V@duck.com',
- (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_PRESIDENT')),
+ (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_ORGANISATOR')),
 
 ('David', 'D', 228778423, 1399, '12345678', 'D@duck.com',
  (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_ORGANISATOR')),
@@ -105,7 +104,7 @@ VALUES
  'Informations: https://clichyechecs.wixsite.com/accueil/copie-de-festival ' ||
  'Inscription: https://www.billetweb' ||
  '.fr/festival-international-dechecs-de-clichy-3-juillet-2022 Renseignements:' ||
- ' Isabelle isa@outlook.fr',
+ ' Isabelle isa@outlook.fr Gomez@duck.com',
  100,
  1000,
  NULL,
@@ -116,7 +115,7 @@ VALUES
  ),
 (
 '7eme Open International de Noisiel - Open A (plus de 1900)',
-TRUE,
+FALSE ,
 '2022-07-09',
 '2022-07-13',
 9,
@@ -124,7 +123,7 @@ TRUE,
 (SELECT p.id
 FROM pairing_styles p WHERE p.pairing_style = 'Suisse'),
 'PINDRIN',
-'H@duck.com',
+'Gomez@duck.com',
 220,
 1200,
 800,
@@ -138,7 +137,7 @@ POINTAGE LUNDI LE 09/07/2022 ENTRE 8H45 ET 9H30
        -- validated
 (
 '7eme Open International de Noisiel - Open B (entre 1400 et 2000)',
-TRUE,
+FALSE,
 '2022-07-09',
 '2022-07-13',
 9,
@@ -146,7 +145,7 @@ TRUE,
 (SELECT p.id
  FROM pairing_styles p WHERE p.pairing_style = 'Suisse'),
 'PINDRIN',
-'H@duck.com',
+'Gomez@duck.com',
 220,
 500,
 350,
@@ -160,7 +159,7 @@ POINTAGE LUNDI LE 09/07/2022 ENTRE 8H45 ET 9H30
        -- validated insert
 (
 '7eme Open International de Noisiel - Open C (-1600)',
-TRUE,
+FALSE,
 '2022-07-09',
 '2022-07-13',
 9,
@@ -168,7 +167,7 @@ TRUE,
 (SELECT p.id
  FROM pairing_styles p WHERE p.pairing_style = 'Suisse'),
 'PINDRIN',
-'H@duck.com',
+'Gomez@duck.com',
 220,
 250,
 150,
@@ -191,7 +190,7 @@ TRUE,
 (SELECT p.id
  FROM pairing_styles p WHERE p.pairing_style = 'Suisse'),
 'Ligue IdF des Echecs',
-'ligue@idf-echecs.com Site web: www.idf-echecs.com',
+'ligue@idf-echecs.com Site web: www.idf-echecs.com Gomez@duck.com',
 NULL,
 2500,
 1200,

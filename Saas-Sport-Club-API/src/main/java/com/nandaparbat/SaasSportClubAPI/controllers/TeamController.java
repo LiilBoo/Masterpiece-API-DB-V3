@@ -21,7 +21,7 @@ public class TeamController {
 
     //* CREATE REQUEST
     //TODO : Add validation -> Max 8 players -> verify players exist
-    @PostMapping("/create")
+    @PostMapping("/admin/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void createTeam(@Valid @RequestBody TeamTransactionDTO inputs){
         teamService.createTeam(inputs);
@@ -34,7 +34,7 @@ public class TeamController {
     // TODO : learn Request recursivity
     // TODO : Learn stream API
     //* WORKS
-    @GetMapping("list-all")
+    @GetMapping("/admin/list-all")
     @ResponseStatus(HttpStatus.OK)
     public List<TeamIDTO> listAllTeams(){
         return teamService.listAllTeams();
@@ -60,14 +60,14 @@ public class TeamController {
     //
 
     //* WORKS
-    @GetMapping("/team-names")
+    @GetMapping("/admin/team-names")
     @ResponseStatus(HttpStatus.OK)
     public List<TeamNameIDTO> listAllTeamNames(){
         return teamService.listAllTeamNames();
     };
 
     //*WORKS
-    @GetMapping("/one-team")
+    @GetMapping("/admin/one-team")
     @ResponseStatus(HttpStatus.OK)
     public TeamReadDTO getTeamById(@RequestParam("id") Long id){
         return teamService.getTeamById(id);
@@ -76,7 +76,7 @@ public class TeamController {
     //* UPDATE REQUEST
 
     //TODO : test
-    @PatchMapping("/change-team")
+    @PatchMapping("/admin/change-team")
     @ResponseStatus(HttpStatus.OK)
     public void updateTeam(@RequestParam("id") Long id, @RequestBody TeamTransactionDTO inputs){
         teamService.updateTeam(id, inputs);

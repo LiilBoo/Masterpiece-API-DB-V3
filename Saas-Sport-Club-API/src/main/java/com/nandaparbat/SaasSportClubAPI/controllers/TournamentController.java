@@ -18,38 +18,44 @@ public class TournamentController {
 
     private final TournamentService tournamentService;
 
-    //* ------ GET REQUESTS -----------
+    //* ---------- CREATE REQUEST
 
-    //* WORKS => DTO
-    @GetMapping("/tour-cards")
+    //*WORKS !!!!
+    @PostMapping("/auth/create-tour")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void tournamentCreate(@RequestBody TournamentCreate inputs){
+        tournamentService.tournamentCreate(inputs);
+    };
+
+    //*READ REQUESTS
+
+    @GetMapping("/users/tour-cards")
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentCardView> findAllTourCards(){
         return tournamentService.findAllToursCards();
     };
 
-    //* WORKS => DTO
-    @GetMapping("/list-admin-tournaments")
+    @GetMapping("/auth/list-admin-tournaments")
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentNameView> listAdmintournaments(){
         return tournamentService.listAdminTournaments();
     };
 
-    //*WORKS => DTO
-    @GetMapping("/list-participants")
+    @GetMapping("/auth/list-participants")
     @ResponseStatus(HttpStatus.OK)
     public TournamentParticipantsDTO listTourParticipants(@RequestParam("id") Long id) {
         return tournamentService.listTourParticipants(id);
     };
 
     //*WORKS => DTO
-    @GetMapping("/my-tournaments")
+    @GetMapping("/auth/my-tournaments")
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentNameSQL> findMyToursByMyInfo(@RequestParam("id") Long id) {
         return tournamentService.findMyToursByMyInfo(id);
     };
 
     //* WORKS => DTO
-    @GetMapping("/with-id")
+    @GetMapping("/users/with-id")
     @ResponseStatus(HttpStatus.OK)
     public TournamentView tourDetails(@RequestParam("id") Long id){
         return  tournamentService.findWithId(id);
@@ -57,7 +63,7 @@ public class TournamentController {
 
 
     //* WORKS => DTO
-    @GetMapping("/events")
+    @GetMapping("/users/events")
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentViewCard> findAllByEventIsTrue(){
         return tournamentService.findAllByEventIsTrue();
@@ -65,28 +71,28 @@ public class TournamentController {
 
     //* WORKS => DTO
     // TODO : IgnoreCase => case insensitivity
-    @GetMapping("/by-name")
+    @GetMapping("/users/by-name")
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentViewCard> findAllByNameIsContaining(@RequestParam("tourname") String tourName){
         return tournamentService.findAllByNameIsContaining(tourName);
     };
 
     //* WORKS => DTO
-    @GetMapping("/by-contact")
+    @GetMapping("/users/by-contact")
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentViewCard> findAllByContactContains(@RequestParam("contact") String contact){
         return tournamentService.findAllByContactContains(contact);
     };
 
     //* WORKS => DTO
-    @GetMapping("/by-format")
+    @GetMapping("/users/by-format")
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentViewCard> findAllByFormatContains(@RequestParam("format") String formatName){
         return tournamentService.findAllByFormatContains(formatName);
     };
 
 
-@GetMapping("/per-page")
+@GetMapping("/users/per-page")
 @ResponseStatus(HttpStatus.OK)
 public List<TournamentCardView> paginatePer10(@RequestParam("page") Long x) {
     return tournamentService.paginatePer10(x);
@@ -96,7 +102,7 @@ public List<TournamentCardView> paginatePer10(@RequestParam("page") Long x) {
     //* ---------- DELETE REQUESTS ----------------------------------
 
     //* WORKS
-    @DeleteMapping("/delete-id")
+    @DeleteMapping("/admin/delete-id")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteWithId(@RequestParam("id") Long id) {
         tournamentService.deleteWithId(id);
@@ -105,32 +111,10 @@ public List<TournamentCardView> paginatePer10(@RequestParam("page") Long x) {
 
     //* ---------- PATCH REQUESTS ------------------------------
 
-    @PatchMapping("/update")
+    @PatchMapping("/auth/update")
     @ResponseStatus(HttpStatus.OK)
     public void update1Tournament(@RequestBody TournamentPatch inputs, @RequestParam("id") Long id){
         tournamentService.update1Tournament(inputs, id);
     };
-
-    //! ---- CHECK LINE : CODE ABOVE WORKS ------------------------------------------------------ //
-
-    //* -------- PUT REQUESTS
-    //! Irrelevant ...
-    @PutMapping("/put")
-    @ResponseStatus(HttpStatus.OK)
-    public void overrideTournament(@RequestBody TournamentPatch inputs,
-                                             @RequestParam("id") Long id){
-        tournamentService.overrideTournament(inputs, id);
-    };
-
-
-    //* ---------- POST REQUEST
-
-    //*WORKS !!!!
-    @PostMapping("/create-tour")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void tournamentCreate(@RequestBody TournamentCreate inputs){
-        tournamentService.tournamentCreate(inputs);
-    };
-
 
 };

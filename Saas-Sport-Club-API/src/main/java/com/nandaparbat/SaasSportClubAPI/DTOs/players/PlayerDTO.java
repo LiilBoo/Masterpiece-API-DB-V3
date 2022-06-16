@@ -20,4 +20,6 @@ public class PlayerDTO {
 
     private int elo;
 
+    private String username;
+
 };

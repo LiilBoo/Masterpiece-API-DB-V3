@@ -49,6 +49,7 @@ public class FormatServiceImpl implements FormatService{
         FormatDTO returnedFormat = new FormatDTO();
 
         returnedFormat.setName(format.getName());
+        returnedFormat.setId(format.getId());
 
         return returnedFormat;
     };

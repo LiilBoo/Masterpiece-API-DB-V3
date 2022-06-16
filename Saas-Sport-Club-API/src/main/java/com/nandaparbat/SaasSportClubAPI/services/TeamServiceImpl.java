@@ -80,6 +80,7 @@ public class TeamServiceImpl implements TeamService {
            newPlayer.setFirstName(player.getFirstName());
            newPlayer.setLastName(player.getLastName());
            newPlayer.setFideNumber(player.getFideNumber());
+           newPlayer.setUsername(player.getUsername());
            newPlayer.setElo(player.getElo());
            newPlayer.setId(player.getId());
 

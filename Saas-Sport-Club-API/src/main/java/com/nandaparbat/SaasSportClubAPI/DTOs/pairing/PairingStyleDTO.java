@@ -16,4 +16,6 @@ public class PairingStyleDTO {
     @NotBlank
     private String name;
 
+    private Long id;
+
 };

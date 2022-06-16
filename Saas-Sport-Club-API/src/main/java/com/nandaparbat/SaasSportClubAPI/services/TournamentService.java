@@ -52,13 +52,4 @@ public interface TournamentService {
     //*WORKS
     void update1Tournament(TournamentPatch inputs, Long id);
 
-    // ! --------- CHECK LINE ---------- //
-
-
-    void overrideTournament(TournamentPatch inputs, Long id);
-
-
-
-
-    //* -- PUT Requests
 }

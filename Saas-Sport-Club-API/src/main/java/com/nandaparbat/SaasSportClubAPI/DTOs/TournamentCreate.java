@@ -17,6 +17,7 @@ import java.time.LocalDate;
 public class TournamentCreate {
 
 
+
     @NotBlank
     private String name;
 
@@ -45,6 +46,7 @@ public class TournamentCreate {
     private String organisator;
 
     @NotBlank
+    @NotNull
     private String contact; //personalUrl or email
 
     @Positive

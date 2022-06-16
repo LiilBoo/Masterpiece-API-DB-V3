@@ -40,13 +40,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().logout().disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/api/**").permitAll().and()
                 .authorizeRequests()
-                .antMatchers("/api/**",
-                        "/api/**")
-                .permitAll().and().authorizeRequests().anyRequest()
+                .antMatchers("/api/tournaments/users/**","/api/players/users/**","/api/pairing-styles/users/**",
+                        "/api/formats/users/**","/api/teams/users/**").permitAll().and()
+                .authorizeRequests().antMatchers("/api/roles/**",
+                        "/api/formats/**","/api/pairing-styles/**","/api/tournaments/**","/api/teams/**")
+                .hasRole("SUPER_ADMIN").and()
+                .authorizeRequests().antMatchers(
+                        "/api/tournaments/admin/**","/api/teams/auth/**")
+                .hasRole("ADMIN").and()
+                .authorizeRequests().antMatchers("/api/tournaments/auth/**")
+                .hasRole("ORGANISATOR")
+                .anyRequest()
                 .authenticated().and().oauth2ResourceServer().jwt();
     };
+
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.cors().and().csrf().disable().logout().disable()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+//                .authorizeRequests().antMatchers("/api/**").permitAll().and()
+//                .authorizeRequests()
+//                .antMatchers("/api/**",
+//                        "/api/**")
+//                .permitAll().and().authorizeRequests().anyRequest()
+//                .authenticated().and().oauth2ResourceServer().jwt();
+//    };
 
     @Bean
     public JwtDecoder jwtDecoder(){

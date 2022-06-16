@@ -3,9 +3,11 @@ package com.nandaparbat.SaasSportClubAPI.services;
 import com.nandaparbat.SaasSportClubAPI.DTOs.*;
 import com.nandaparbat.SaasSportClubAPI.entities.Format;
 import com.nandaparbat.SaasSportClubAPI.entities.PairingStyle;
+import com.nandaparbat.SaasSportClubAPI.entities.Player;
 import com.nandaparbat.SaasSportClubAPI.entities.Tournament;
 import com.nandaparbat.SaasSportClubAPI.repositories.FormatRepository;
 import com.nandaparbat.SaasSportClubAPI.repositories.PairingStyleRepository;
+import com.nandaparbat.SaasSportClubAPI.repositories.PlayerRepository;
 import com.nandaparbat.SaasSportClubAPI.repositories.TournamentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.Nullable;
@@ -27,14 +29,12 @@ public class TournamentServiceImpl implements TournamentService {
 
     private final PairingStyleRepository pairingStyleRepository;
 
+    private final PlayerRepository playerRepository;
 
-    //* ---- GET REQUESTS
-
-    //* WORKS => DTO
     @Override
     public List<TournamentCardView> findAllToursCards() {
         return tournamentRepository.findAllProjectedBy(TournamentCardView.class);
-    }
+    };
 
     @Override
     public List<TournamentNameView> listAdminTournaments() {
@@ -245,6 +245,7 @@ public class TournamentServiceImpl implements TournamentService {
     //? Did work : test more
     @Transactional
     public Tournament tournamentSetting(TournamentCreate inputs){
+
         Tournament tournament = new Tournament();
         //-- tournament : tournament name
         tournament.setName(inputs.getName());
@@ -256,17 +257,17 @@ public class TournamentServiceImpl implements TournamentService {
         //-- tournament : number of rounds
         tournament.setNumberOfRounds(inputs.getNumberOfRounds());
         //-- tournament : cadence format
-        Format format = formatRepository.findById(inputs.getFormatId()).get();
+        Format format = formatRepository.getById(inputs.getFormatId());
         tournament.setFormat(format);
         //-- tournamenet : pairing Style
 
-        PairingStyle pairing = pairingStyleRepository.findById(inputs.getPairingId()).get();
-//        Long number = new Long(1);
-//        PairingStyle pairing = new PairingStyle(number, "Suisse");
+        PairingStyle pairing = pairingStyleRepository.getById(inputs.getPairingId());
+
         tournament.setPairingStyle(pairing);
         //-- tournament : organisator
         tournament.setOrganisator(inputs.getOrganisator());
         //-- tournament : contact
+
         tournament.setContact(inputs.getContact());
         //-- tournament : capacity
         tournament.setCapacity(inputs.getCapacity());
@@ -286,7 +287,6 @@ public class TournamentServiceImpl implements TournamentService {
         return tournament;
     };
 
-    //? More tests to do
     @Override
     @Transactional
     public void tournamentCreate(TournamentCreate inputs) {
@@ -296,7 +296,7 @@ public class TournamentServiceImpl implements TournamentService {
 
     //* -------- DELETE REQUEST -------
 
-    //* WORKS => HTTP 200
+    //* WORKS
     @Override
     public void deleteWithId(Long id) {
 
@@ -304,56 +304,5 @@ public class TournamentServiceImpl implements TournamentService {
 
         tournamentRepository.deleteById(tour.getId());
     };
-
-
-    //! ---------- CHECK LINE : CODE ABOVE WORKS --------------
-
-    //! USELESS DOES NOT WORK
-    @Override
-    @Transactional
-    public void overrideTournament(TournamentPatch inputs, Long id) {
-
-        Tournament tour = tournamentRepository.findById(id).get();
-
-        tour.setName(inputs.getName());
-        tour.setEvent(inputs.getEvent());
-
-            tour.setDateOfStart(inputs.getDateOfStart());
-
-            tour.setDateOfEnd(inputs.getDateOfEnd());
-
-            tour.setNumberOfRounds(inputs.getNumberOfRounds());
-
-            //TODO : Verify it's an exisiting Format in Database
-        Format format = formatRepository.findById(inputs.getFormatId()).get();
-        tour.setFormat(format);
-
-            //TODO : Verify it's an exisiting PairingStyle in Database
-        PairingStyle pairing = pairingStyleRepository.findById(inputs.getPairingId()).get();
-        tour.setPairingStyle(pairing);
-
-            tour.setOrganisator(inputs.getOrganisator());
-
-            tour.setContact(inputs.getContact());
-
-            tour.setCapacity(inputs.getCapacity());
-
-            tour.setFirstPrice(inputs.getFirstPrice());
-
-            tour.setSecondPrice(inputs.getSecondPrice());
-
-            tour.setThirdPrice(inputs.getThirdPrice());
-
-            tour.setRegisterFeeJunior(inputs.getRegisterFeeJunior());
-
-            tour.setRegisterFeeSenior(inputs.getRegisterFeeSenior());
-
-            tour.setDescription(inputs.getDescription());
-
-            tournamentRepository.save(tour);
-
-    }
-
-
 
 };

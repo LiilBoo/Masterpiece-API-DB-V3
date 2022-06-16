@@ -29,13 +29,13 @@ public class PairingStyleController {
 
     //* ---- READ REQUEST
 
-    @GetMapping("/list")
+    @GetMapping("/users/list")
     @ResponseStatus(HttpStatus.OK)
     public List<PairingStyleIDTO> listOfPairings(){
         return pairingService.listOfPairings();
     };
 
-    @GetMapping("/with-id")
+    @GetMapping("/admin/with-id")
     @ResponseStatus(HttpStatus.OK)
     public PairingStyleDTO findPairingStyleById(@RequestParam Long id){
         return pairingService.findPairingStyleById(id);
@@ -43,7 +43,7 @@ public class PairingStyleController {
 
     //* ---- UPDATE REQUEST
 
-    @PatchMapping("/update")
+    @PatchMapping("/admin/update")
     @ResponseStatus(HttpStatus.ACCEPTED)
     void updatePairingStyle(@RequestBody PairingStyleDTO inputs, @RequestParam("id") Long id){
         pairingService.updatePairingStyle(inputs, id);

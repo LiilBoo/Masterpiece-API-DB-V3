@@ -14,8 +14,9 @@ DROP TABLE IF EXISTS tournaments CASCADE ;
 DROP TABLE IF EXISTS teams CASCADE ;
 DROP TABLE IF EXISTS teams_players CASCADE ;
 DROP TABLE IF EXISTS tournaments_players CASCADE ;
-DROP TABLE IF EXISTS players_teams CASCADE ;
-DROP TABLE IF EXISTS players_tournaments CASCADE ;
+
+
+-- ON DELETE CASCADE
 
 CREATE TABLE roles (
     id SERIAL PRIMARY KEY UNIQUE,
@@ -34,11 +35,11 @@ CREATE TABLE players (
     role_id INTEGER,
          CONSTRAINT fk_role_id
              FOREIGN KEY (role_id)
-                  REFERENCES roles(id)
+                  REFERENCES roles(id) ON DELETE SET NULL
 );
 -- table created
 
--- How to force lowercase upon saving new formats ?
+
 CREATE TABLE formats (
  id SERIAL PRIMARY KEY UNIQUE,
  format_name VARCHAR(10) UNIQUE NOT NULL
@@ -60,8 +61,8 @@ CREATE TABLE tournaments (
     date_of_start DATE NOT NULL,
     date_of_end DATE,
     number_of_rounds SMALLINT NOT NULL,
-    format INTEGER NOT NULL,
-    pairing_style INTEGER NOT NULL,
+    format INTEGER,
+    pairing_style INTEGER,
     organisator VARCHAR(100) NOT NULL,
     contact VARCHAR(255) NOT NULL,
     capacity INTEGER ,
@@ -73,10 +74,10 @@ CREATE TABLE tournaments (
     description VARCHAR(255) NOT NULL,
     CONSTRAINT fk_format_name
         FOREIGN KEY (format)
-            REFERENCES formats(id),
+            REFERENCES formats(id) ON DELETE SET NULL,
     CONSTRAINT fk_pairing_style
         FOREIGN KEY (pairing_style)
-            REFERENCES pairing_styles(id)
+            REFERENCES pairing_styles(id) ON DELETE SET NULL
 );
 -- table created
 
@@ -97,10 +98,10 @@ player_id INTEGER,
 PRIMARY KEY (team_id, player_id),
 CONSTRAINT fk_team_id
    FOREIGN KEY(team_id)
-       REFERENCES teams(id),
+       REFERENCES teams(id) ON DELETE CASCADE,
 CONSTRAINT fk_player_id
    FOREIGN KEY (player_id)
-       REFERENCES players(id)
+       REFERENCES players(id) ON DELETE CASCADE
 );
 
 CREATE TABLE tournaments_players (
@@ -109,10 +110,10 @@ CREATE TABLE tournaments_players (
     PRIMARY KEY (tournament_id, player_id),
     CONSTRAINT fk_tournament_id
         FOREIGN KEY(tournament_id)
-            REFERENCES tournaments(id),
+            REFERENCES tournaments(id) ON DELETE CASCADE ,
     CONSTRAINT fk_player_id
         FOREIGN KEY (player_id)
-            REFERENCES players(id)
+            REFERENCES players(id) ON DELETE CASCADE
 );
 
 -- CREATE TABLE players_teams (

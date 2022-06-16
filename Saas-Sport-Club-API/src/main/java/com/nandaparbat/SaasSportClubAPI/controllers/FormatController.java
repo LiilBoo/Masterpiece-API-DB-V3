@@ -19,7 +19,7 @@ public class FormatController {
 
     //* --- CRUD : CREATE  --- POSTS REQUESTS
 
-    @PostMapping("create-format")
+    @PostMapping("/admin/create-format")
     @ResponseStatus(HttpStatus.CREATED)
     public void createFormat(@RequestBody FormatDTO inputs){
         formatService.createFormat(inputs);
@@ -27,20 +27,20 @@ public class FormatController {
 
     //* READ --- GET REQUESTS
 
-    @GetMapping("/all")
+    @GetMapping("/users/all")
     @ResponseStatus(HttpStatus.OK)
     public List<FormatIDTO> allFormats(){
         return formatService.findAllProjectedBy();
     };
 
-    @GetMapping("/by-id")
+    @GetMapping("/admin/by-id")
     @ResponseStatus(HttpStatus.OK)
     public FormatDTO findFormatById(@RequestParam("id") Long id) {
         return formatService.findFormatById(id);
     };
 
     //TODO : case sensitivity
-    @GetMapping("/formatname")
+    @GetMapping("/users/formatname")
     @ResponseStatus(HttpStatus.OK)
     public List<FormatIDTO> searchByName(@RequestParam("formatname") String formatName) {
 
@@ -49,7 +49,7 @@ public class FormatController {
 
     //* UPDATE --- PATCH REQUESTS
 
-    @PatchMapping("/update")
+    @PatchMapping("/admin/update")
     @ResponseStatus(HttpStatus.OK)
     public void updateFormat(@RequestBody FormatDTO inputs, @RequestParam("id") Long id){
         formatService.updateFormat(inputs, id);
