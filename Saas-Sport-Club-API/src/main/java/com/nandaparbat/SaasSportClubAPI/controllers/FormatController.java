@@ -17,15 +17,13 @@ public class FormatController {
     private final FormatService formatService;
 
 
-    //* --- CRUD : CREATE  --- POSTS REQUESTS
-
     @PostMapping("/admin/create-format")
     @ResponseStatus(HttpStatus.CREATED)
     public void createFormat(@RequestBody FormatDTO inputs){
         formatService.createFormat(inputs);
     };
 
-    //* READ --- GET REQUESTS
+
 
     @GetMapping("/users/all")
     @ResponseStatus(HttpStatus.OK)
@@ -39,7 +37,7 @@ public class FormatController {
         return formatService.findFormatById(id);
     };
 
-    //TODO : case sensitivity
+
     @GetMapping("/users/formatname")
     @ResponseStatus(HttpStatus.OK)
     public List<FormatIDTO> searchByName(@RequestParam("formatname") String formatName) {
@@ -47,7 +45,7 @@ public class FormatController {
         return formatService.findAllByNameEquals(formatName);
     };
 
-    //* UPDATE --- PATCH REQUESTS
+
 
     @PatchMapping("/admin/update")
     @ResponseStatus(HttpStatus.OK)
@@ -57,10 +55,7 @@ public class FormatController {
 
 
 
-    //* CRUD : DELETE --- DELETE REQUESTS
 
-    //! Goes against business logic to delete formats
-    //! Formats are tied to tournaments and tournaments can't have null format
     @DeleteMapping("delete-format")
     @ResponseStatus(HttpStatus.OK)
     public void deleteFormat(@RequestParam("id") Long id){

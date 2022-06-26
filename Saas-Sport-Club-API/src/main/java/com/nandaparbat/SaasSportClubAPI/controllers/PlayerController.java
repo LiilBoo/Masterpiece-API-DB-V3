@@ -17,9 +17,8 @@ public class PlayerController {
 
     private final PlayerService playerService;
 
-    //*READ REQUESTS
 
-    //*WORKS
+
     @GetMapping("/users/my-tours")
     @ResponseStatus(HttpStatus.OK)
     public List<MyToursDTO> myToursByMyId(@RequestParam("id") Long id){
@@ -32,7 +31,7 @@ public class PlayerController {
         return playerService.myTeamsByMyId(id);
     };
 
-    //*WORKS
+
     @GetMapping("/users/my-infos")
     @ResponseStatus(HttpStatus.OK)
     public PlayerInfosDTO myInfosByMyId(@RequestParam("id") Long id){
@@ -47,45 +46,41 @@ public class PlayerController {
          playerService.registerToTournament(tourId, myPersonalId);
     };
 
-    //*WORKS
+    @GetMapping("/users/unregister-to-tour")
+    public void unregisterToTournament(@RequestParam("tourId")Long tourId,
+                                       @RequestParam("myPersonalId")Long playerId){
+        playerService.unregisterToTournament(tourId, playerId);
+    };
+
+
     @GetMapping("/all-players")
     @ResponseStatus(HttpStatus.OK)
     public List<PlayerIDTO> listAllPlayers(){
        return playerService.listAllPlayers();
     };
 
-//    //*WORKS
-//    @GetMapping("/list-mails")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<PlayerEmailIDTO> listAllPlayersMail(){
-//        return playerService.listAllPlayersMail();
-//    };
 
-    //*UPDATE REQUEST
-
-    //*WORKS
     @PatchMapping("/users/update-profile")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateMyInfos(@Valid @RequestBody PlayerTransactionDTO inputs, @RequestParam("id") Long id){
         playerService.updateMyInfos(inputs, id);
     };
-    //* DELETE REQUESTS
 
-    //*WORKS
+
+
     @DeleteMapping("/delete-profile")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteMyProfile(@RequestParam("id") Long id){
         playerService.deleteMyProfile(id);
     };
 
-    //*WORKS
     @PostMapping("/users/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody PlayerCreate inputs){
         playerService.create(inputs);
     };
 
-    //*WORKS
+
     @PostMapping("/users/sign-in")
     @ResponseStatus(HttpStatus.OK)
     public Jwt signIn(@RequestBody PlayerSignIn inputs){

@@ -16,7 +16,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class TournamentCreate {
 
-
+    @NotNull
+    private Long creatorId;
 
     @NotBlank
     private String name;

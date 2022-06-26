@@ -116,30 +116,5 @@ CREATE TABLE tournaments_players (
             REFERENCES players(id) ON DELETE CASCADE
 );
 
--- CREATE TABLE players_teams (
---     player_id INTEGER,
---     team_id INTEGER,
---     PRIMARY KEY (player_id, team_id),
---     CONSTRAINT fk_player_id
---         FOREIGN KEY(player_id)
---             REFERENCES players(id),
---     CONSTRAINT fk_team_id
---         FOREIGN KEY(team_id)
---                 REFERENCES teams(id)
--- );
---
--- CREATE TABLE players_tournaments (
---     player_id INTEGER,
---     tournament_id INTEGER,
---     PRIMARY KEY (player_id, tournament_id),
---     CONSTRAINT fk_player_id
---         FOREIGN KEY(player_id)
---             REFERENCES players(id),
---     CONSTRAINT fk_tournament_id
---         FOREIGN KEY(tournament_id)
---             REFERENCES tournaments(id)
---
--- );
-
 
 

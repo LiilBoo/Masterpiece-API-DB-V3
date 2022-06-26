@@ -19,21 +19,16 @@ public class TeamController {
 
     private final TeamService teamService;
 
-    //* CREATE REQUEST
-    //TODO : Add validation -> Max 8 players -> verify players exist
+
     @PostMapping("/admin/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void createTeam(@Valid @RequestBody TeamTransactionDTO inputs){
         teamService.createTeam(inputs);
     };
 
-    //* READ REQUESTS
-
 
     //TODO : Read doc about @JsonIgnore
     // TODO : learn Request recursivity
-    // TODO : Learn stream API
-    //* WORKS
     @GetMapping("/admin/list-all")
     @ResponseStatus(HttpStatus.OK)
     public List<TeamIDTO> listAllTeams(){
@@ -59,32 +54,26 @@ public class TeamController {
 //    at com.fasterxml.jackson.databind.ser.std.CollectionSerializer.serialize(CollectionSerializer.java:107) ~[jackson-databind-2.13.3.jar:2.13.3]
     //
 
-    //* WORKS
+
     @GetMapping("/admin/team-names")
     @ResponseStatus(HttpStatus.OK)
     public List<TeamNameIDTO> listAllTeamNames(){
         return teamService.listAllTeamNames();
     };
 
-    //*WORKS
+
     @GetMapping("/admin/one-team")
     @ResponseStatus(HttpStatus.OK)
     public TeamReadDTO getTeamById(@RequestParam("id") Long id){
         return teamService.getTeamById(id);
     };
 
-    //* UPDATE REQUEST
-
-    //TODO : test
     @PatchMapping("/admin/change-team")
     @ResponseStatus(HttpStatus.OK)
     public void updateTeam(@RequestParam("id") Long id, @RequestBody TeamTransactionDTO inputs){
         teamService.updateTeam(id, inputs);
     };
 
-    //* DELETE REQUEST
-
-    //*WORKS
     @DeleteMapping("/delete")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteTeam(@RequestParam("id") Long id){

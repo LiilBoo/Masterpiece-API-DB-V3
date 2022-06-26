@@ -2,6 +2,7 @@ package com.nandaparbat.SaasSportClubAPI.services;
 
 import com.nandaparbat.SaasSportClubAPI.DTOs.players.*;
 import com.nandaparbat.SaasSportClubAPI.security.Jwt;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public interface PlayerService {
     // relevant retrieved data
     void registerToTournament(Long tourId, Long playerId);
 
-
+    void unregisterToTournament(@Param("tourId") Long tourId, @Param("myPersonalId") Long playerId);
 
 
     //* --- ADMIN REQUESTS Relative to users

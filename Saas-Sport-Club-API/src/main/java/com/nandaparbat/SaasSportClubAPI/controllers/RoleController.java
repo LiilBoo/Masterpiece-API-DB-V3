@@ -16,9 +16,7 @@ public class RoleController {
 
     private final RoleService roleService;
 
-    //*CREATE
 
-    //*WORKS
     @PostMapping("/create-role")
     @ResponseStatus(HttpStatus.CREATED)
     public void createRole(@RequestBody RoleTransactionDTO inputs){
@@ -26,28 +24,19 @@ public class RoleController {
     };
 
 
-
-    //*READ REQUESTS
-
-    //*WORKS
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<RoleIDTO> listOfRoles(){
         return roleService.listOfRoles();
     };
 
-    //*UPDATE REQUEST
-
-    //*WORKS
     @PatchMapping("/update-role")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateRole(@RequestBody RoleTransactionDTO inputs, @RequestParam("id") Long id){
         roleService.updateRole(inputs, id);
     };
 
-    //*DELETE REQUEST
 
-    //*WORKS
     @DeleteMapping("delete-role")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteRole(@RequestParam("id") Long id){

@@ -31,12 +31,11 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
             nativeQuery = true)
    void registerToTournament(@Param("tourId") Long tourId, @Param("myPersonalId") Long playerId);
 
-//    @Transactional
-//    @Modifying
-//    @Query(value =
-//            "INSERT INTO tournaments_players VALUES ((SELECT p.id FROM players p WHERE p.id = ?2)," +
-//                    "(SELECT t.id FROM tournaments t WHERE t.id = ?1))",
-//            nativeQuery = true)
-//   void registeredToTourUpdateInfos(Long tourId, Long myPersonalId);
+
+    @Transactional
+    @Modifying
+    @Query(value= " DELETE FROM tournaments_players WHERE tournament_id = :tourId AND player_id = :myPersonalId ",
+            nativeQuery = true)
+    void unregisterToTournament(@Param("tourId") Long tourId, @Param("myPersonalId") Long playerId);
 
 };

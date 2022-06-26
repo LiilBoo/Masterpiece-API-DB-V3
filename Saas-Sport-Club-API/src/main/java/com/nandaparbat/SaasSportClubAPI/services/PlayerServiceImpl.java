@@ -158,6 +158,11 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public void registerToTournament(Long tourId, Long playerId) {
         playerRepository.registerToTournament( tourId, playerId);
+    }
+
+    @Override
+    public void unregisterToTournament(Long tourId, Long playerId) {
+        playerRepository.unregisterToTournament(tourId, playerId);
     };
 
 //    @Override

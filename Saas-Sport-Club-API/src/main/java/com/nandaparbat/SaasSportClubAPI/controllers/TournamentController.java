@@ -18,16 +18,14 @@ public class TournamentController {
 
     private final TournamentService tournamentService;
 
-    //* ---------- CREATE REQUEST
 
-    //*WORKS !!!!
     @PostMapping("/auth/create-tour")
     @ResponseStatus(HttpStatus.CREATED)
     public void tournamentCreate(@RequestBody TournamentCreate inputs){
         tournamentService.tournamentCreate(inputs);
     };
 
-    //*READ REQUESTS
+
 
     @GetMapping("/users/tour-cards")
     @ResponseStatus(HttpStatus.OK)
@@ -47,14 +45,14 @@ public class TournamentController {
         return tournamentService.listTourParticipants(id);
     };
 
-    //*WORKS => DTO
+
     @GetMapping("/auth/my-tournaments")
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentNameSQL> findMyToursByMyInfo(@RequestParam("id") Long id) {
         return tournamentService.findMyToursByMyInfo(id);
     };
 
-    //* WORKS => DTO
+
     @GetMapping("/users/with-id")
     @ResponseStatus(HttpStatus.OK)
     public TournamentView tourDetails(@RequestParam("id") Long id){
@@ -62,29 +60,28 @@ public class TournamentController {
     };
 
 
-    //* WORKS => DTO
+
     @GetMapping("/users/events")
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentViewCard> findAllByEventIsTrue(){
         return tournamentService.findAllByEventIsTrue();
     };
 
-    //* WORKS => DTO
-    // TODO : IgnoreCase => case insensitivity
+
     @GetMapping("/users/by-name")
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentViewCard> findAllByNameIsContaining(@RequestParam("tourname") String tourName){
         return tournamentService.findAllByNameIsContaining(tourName);
     };
 
-    //* WORKS => DTO
+
     @GetMapping("/users/by-contact")
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentViewCard> findAllByContactContains(@RequestParam("contact") String contact){
         return tournamentService.findAllByContactContains(contact);
     };
 
-    //* WORKS => DTO
+
     @GetMapping("/users/by-format")
     @ResponseStatus(HttpStatus.OK)
     public List<TournamentViewCard> findAllByFormatContains(@RequestParam("format") String formatName){
@@ -97,11 +94,7 @@ public class TournamentController {
 public List<TournamentCardView> paginatePer10(@RequestParam("page") Long x) {
     return tournamentService.paginatePer10(x);
 };
-    // TODO : Per month ? => Time ? implement : Don't implent
 
-    //* ---------- DELETE REQUESTS ----------------------------------
-
-    //* WORKS
     @DeleteMapping("/admin/delete-id")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteWithId(@RequestParam("id") Long id) {
@@ -109,7 +102,7 @@ public List<TournamentCardView> paginatePer10(@RequestParam("page") Long x) {
     };
 
 
-    //* ---------- PATCH REQUESTS ------------------------------
+
 
     @PatchMapping("/auth/update")
     @ResponseStatus(HttpStatus.OK)

@@ -265,10 +265,13 @@ public class TournamentServiceImpl implements TournamentService {
 
         tournament.setPairingStyle(pairing);
         //-- tournament : organisator
+
+        Player player = playerRepository.getById(inputs.getCreatorId());
+
         tournament.setOrganisator(inputs.getOrganisator());
         //-- tournament : contact
 
-        tournament.setContact(inputs.getContact());
+        tournament.setContact(inputs.getContact() + ' ' + player.getUsername());
         //-- tournament : capacity
         tournament.setCapacity(inputs.getCapacity());
         //-- tournament : first Price

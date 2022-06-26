@@ -25,27 +25,31 @@ INSERT INTO players (
     role_id
 )
  VALUES
-('Francis', 'B', 551001756, 1326, '12345678',  'F@duck.com',
- (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_SUPER_ADMIN')),
+('Francis', 'B', 551001756, 1326, '$2a$10$2UTWUnKf2Q1WDzvdau8.MuOLJAI0piHweE52tPuWYBUVeupqIY8Yi',  'F@duck.com',
+(SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_SUPER_ADMIN')),
 
-('Selena', 'Gomez', 440990645, 2900, '$2a$10$jtjVcOpwmLp4Zqn2vHYLUeTSqnXxrvU3FIzuFI2nt62U1FAAbhq3S',
- 'Gomez@duck.com',
- (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_SUPER_ADMIN')),
+('Selena', 'Gomez', 440990645, 2900, '$2a$10$2UTWUnKf2Q1WDzvdau8.MuOLJAI0piHweE52tPuWYBUVeupqIY8Yi',
+'Gomez@duck.com',
+(SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_SUPER_ADMIN')),
 
-('Phillipe', 'V', 339889534, 1399, '12345678', 'V@duck.com',
- (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_ORGANISATOR')),
+('Phillipe', 'V', 339889534, 1399, '$2a$10$2UTWUnKf2Q1WDzvdau8.MuOLJAI0piHweE52tPuWYBUVeupqIY8Yi', 'V@duck.com',
+(SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_ORGANISATOR')),
 
-('David', 'D', 228778423, 1399, '12345678', 'D@duck.com',
- (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_ORGANISATOR')),
+('David', 'D', 228778423, 1399, '$2a$10$2UTWUnKf2Q1WDzvdau8.MuOLJAI0piHweE52tPuWYBUVeupqIY8Yi', 'D@duck.com',
+(SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_ORGANISATOR')),
 
-('Oscar', 'T', 117667312, 2900, '12345678', 'T@duck.com',
- (SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_ORGANISATOR')),
+('Oscar', 'T', 117667312, 2900, '$2a$10$2UTWUnKf2Q1WDzvdau8.MuOLJAI0piHweE52tPuWYBUVeupqIY8Yi', 'T@duck.com',
+(SELECT r.id FROM roles r WHERE r.role_name = 'ROLE_ORGANISATOR')),
 
-('Phillip', 'W', 008556201, 1700, '12345678','W@duck.com',
- (SELECT r.id FROM roles r  WHERE r.role_name = 'ROLE_ORGANISATOR')),
+('Phillip', 'W', 008556201, 1700, '$2a$10$2UTWUnKf2Q1WDzvdau8.MuOLJAI0piHweE52tPuWYBUVeupqIY8Yi','W@duck.com',
+(SELECT r.id FROM roles r  WHERE r.role_name = 'ROLE_ORGANISATOR')),
 
-('Harry', 'W', 1196673012, 2153, '12345678','H@duck.com',
- (SELECT r.id FROM roles r  WHERE r.role_name = 'ROLE_ORGANISATOR'))
+('Harry', 'P', 1196673012, 2153, '$2a$10$2UTWUnKf2Q1WDzvdau8.MuOLJAI0piHweE52tPuWYBUVeupqIY8Yi','H@duck.com',
+(SELECT r.id FROM roles r  WHERE r.role_name = 'ROLE_ORGANISATOR')),
+
+('Stephane', 'Swag',207784123, 2901,
+'$2a$10$2UTWUnKf2Q1WDzvdau8.MuOLJAI0piHweE52tPuWYBUVeupqIY8Yi','P@duck.com',
+(SELECT r.id FROM roles r  WHERE r.role_name = 'ROLE_ORGANISATOR'))
 ;
 --   End of insertion for initial players
 -- validated insert
@@ -338,6 +342,25 @@ TRUE,
 20,
 20,
 '1ers Prix garantis si 50 inscrits payants'
+),
+(
+'Blitz Mania',
+FALSE ,
+'2022-07-12',
+'2022-07-17',
+9,
+(SELECT f.id FROM formats f WHERE f.format_name = 'blitz'),
+(SELECT p.id
+FROM pairing_styles p WHERE p.pairing_style = 'Suisse'),
+'V chess club',
+'B@duck.com',
+1800,
+500,
+300,
+200,
+60,
+40,
+'Marijoa will ...'
 )
 ;
 -- validated insert
@@ -351,37 +374,6 @@ VALUES
 ('Baroque Works'),('Navy'),('CP9'),('Doflamingo Family'),('Beast Pirates'),
 ('MOM Pirates'),('Pirates of The Heart')
 ;
--- validated insert
--- end of teams
---
--- INSERT INTO players_teams VALUES
---
--- ((SELECT p.id FROM players p WHERE p.first_name = 'Oscar'),
---  (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
---
--- ((SELECT p.id FROM players p WHERE p.first_name = 'Phillip'),
---  (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
---
--- ((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
---  (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
---
--- ((SELECT p.id FROM players p WHERE p.first_name = 'Harry'),
---  (SELECT t.id FROM teams t WHERE t.team_name = 'Avengers')),
---
--- ((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
---  (SELECT t.id FROM teams t WHERE t.team_name = 'Suicid Squad')),
---
--- ((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
---  (SELECT t.id FROM teams t WHERE t.team_name = 'Dream Team')),
---
--- ((SELECT p.id FROM players p WHERE p.first_name = 'Francis'),
---  (SELECT t.id FROM teams t WHERE t.team_name = 'Mugiwara')),
---
--- ((SELECT p.id FROM players p WHERE p.first_name = 'Oscar'),
---  (SELECT t.id FROM teams t WHERE t.team_name = 'Mugiwara'))
--- ;
--- end of players_teams
--- validated insert
 
 INSERT INTO teams_players VALUES
 
@@ -416,7 +408,10 @@ INSERT INTO teams_players VALUES
 (SELECT p.id FROM players p WHERE p.first_name = 'Selena')),
 
 ((SELECT t.id FROM teams t WHERE t.team_name = 'Suicid Squad'),
-(SELECT p.id FROM players p WHERE p.first_name = 'Selena'))
+(SELECT p.id FROM players p WHERE p.first_name = 'Selena')),
+
+((SELECT t.id FROM teams t WHERE t.team_name = 'Mugiwara'),
+ (SELECT p.id FROM players p WHERE p.first_name = 'Stephane'))
 ;
 
 INSERT INTO tournaments_players VALUES
